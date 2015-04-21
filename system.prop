@@ -65,6 +65,8 @@ persist.rild.nitz_short_ons_3=
 ro.sys.fw.dex2oat_thread_count=4
 ro.config.max_starting_bg=8
 ro.sys.fw.use_trim_settings=true
+ro.core_ctl_min_cpu=2
+ro.core_ctl_max_cpu=4
 
 # Radio
 rild.libargs=-d /dev/smd0
