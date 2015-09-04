@@ -1,1 +1,5 @@
 allow kernel vfat:file { getattr open };
+
+# TODO - root cause why the kernel generating this denial.
+allow kernel domain:process setsched;
+allow kernel system_app:process setsched;
