@@ -11,3 +11,6 @@ allow kernel radio:process setsched;
 allow kernel system_app:process setsched;
 allow kernel system_server:process setsched;
 allow kernel zygote:process setsched;
+
+# TODO - root cause why the kernel generating this denial.
+allow kernel domain:process setsched;
