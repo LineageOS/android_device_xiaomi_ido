@@ -40,8 +40,7 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    # Boringssl hacks
-    export LD_PRELOAD "libboringssl-compat.so"
+    export LD_SHIM_LIBS "/system/bin/mm-qcamera-daemon|libshim_camera.so"
     
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
