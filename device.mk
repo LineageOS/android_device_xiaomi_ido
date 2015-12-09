@@ -98,6 +98,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8916
+
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # DataServices
 PRODUCT_PACKAGES += \
     librmnetctl

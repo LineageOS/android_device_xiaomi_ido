@@ -1,0 +1,3 @@
+allow mediaserver sensorservice_service:service_manager find;
+binder_call(mediaserver, servicemanager);
+binder_call(mediaserver, sensorservice_service);
