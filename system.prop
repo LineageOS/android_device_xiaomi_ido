@@ -88,6 +88,7 @@ rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 ro.telephony.call_ring.multiple=false
 ril.subscription.types=NV,RUIM
 persist.radio.apm_sim_not_pwdn=1
+persist.radio.flexmap_type=dds
 persist.radio.multisim.config=dsds
 ro.telephony.default_network=9,9
 
