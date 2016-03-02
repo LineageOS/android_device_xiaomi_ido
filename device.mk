@@ -226,7 +226,6 @@ PRODUCT_PACKAGES += \
     libwcnss_qmi
 
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
     hostapd_default.conf \
     hostapd \
     wpa_supplicant \
