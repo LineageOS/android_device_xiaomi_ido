@@ -474,7 +474,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
-    writepid /dev/cpuset/system-background/tasks
 
 service qseecomd /system/bin/qseecomd
    class core
@@ -485,7 +484,6 @@ service perfd /system/vendor/bin/perfd
    class main
    user root
    disabled
-   writepid /dev/cpuset/system-background/tasks
 
 service thermal-engine /system/vendor/bin/thermal-engine
    class main
@@ -528,12 +526,6 @@ on property:init.svc.surfaceflinger=stopped
 
 on property:init.svc.surfaceflinger=running
     start ppd
-
-service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
-    class core
-    user root
-    group root
-    writepid /dev/cpuset/system-background/tasks
 
 on property:sys.boot_completed=1
     start config_lineout
