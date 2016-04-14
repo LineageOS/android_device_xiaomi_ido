@@ -345,6 +345,7 @@ on property:bluetooth.startbtsnoop=false
     stop btsnoop
 
 on property:vold.decrypt=trigger_restart_framework
+    start config_bt_addr
     start config_bluetooth
     start wcnss-service
 
@@ -370,8 +371,14 @@ service loc_launcher /system/bin/loc_launcher
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
 
-service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
+service config_bt_addr /system/bin/btnvtool -O
+    class core
+    user bluetooth
+    group bluetooth radio
+    oneshot
+
+service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+    class core
     user root
     oneshot
 
