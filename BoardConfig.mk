@@ -75,11 +75,8 @@ BLUETOOTH_HCI_USE_MCT := true
 QCOM_BT_USE_BTNV := true
 
 # Camera
+TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
-# Force camera module to be compiled only in 32-bit mode on 64-bit systems
-# Once camera module can run in the native mode of the system (either
-# 32-bit or 64-bit), the following line should be deleted
-BOARD_QTI_CAMERA_32BIT_ONLY := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -95,12 +92,15 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_C2D_COMPOSITION := true
+TARGET_LDPRELOAD := libNimsWrap.so
+BOARD_USES_OPENSSL_SYMBOLS := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_SWV8_DISK_ENCRYPTION := true
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
@@ -121,6 +121,9 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Keymaster
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
+# Malloc
+MALLOC_IMPL := dlmalloc
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -143,6 +146,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
 # RIL
 TARGET_RIL_VARIANT := caf
+PROTOBUF_SUPPORTED := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
