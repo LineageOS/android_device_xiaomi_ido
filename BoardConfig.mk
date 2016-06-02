@@ -60,6 +60,13 @@ TARGET_KERNEL_CONFIG := cm_ido_defconfig
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Audio
+AUDIO_FEATURE_DEEP_BUFFER_RINGTONE := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+BOARD_USES_ALSA_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
+
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 # Force camera module to be compiled only in 32-bit mode on 64-bit systems
