@@ -180,6 +180,15 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libxml2
 
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.qcom.bt.sh \
+    init.qcom.power.sh \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    ueventd.qcom.rc
+
 # Sensors
 PRODUCT_PACKAGES += \
     calmodule.cfg
