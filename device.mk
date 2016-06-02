@@ -151,6 +151,7 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
     libc2dcolorconvert \
     libOmxAacEnc \
     libOmxAmrEnc \
@@ -158,8 +159,10 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
     libOmxSwVencHevc \
+    libOmxVidcCommon \
     libOmxVdec \
     libOmxVenc \
+    libextmedia_jni \
     libstagefrighthw
 
 # Power
