@@ -67,6 +67,13 @@ AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+QCOM_BT_USE_BTNV := true
+
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 # Force camera module to be compiled only in 32-bit mode on 64-bit systems
