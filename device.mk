@@ -177,6 +177,10 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libxml2
 
+# Sensors
+PRODUCT_PACKAGES += \
+    calmodule.cfg
+
 # Thermal Configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf
