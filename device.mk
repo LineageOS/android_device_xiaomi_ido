@@ -104,6 +104,10 @@ PRODUCT_PACKAGES += \
     memtrack.msm8916 \
     liboverlay
 
+# IPC Router Configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
