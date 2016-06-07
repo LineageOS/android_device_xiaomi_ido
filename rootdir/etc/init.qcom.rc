@@ -42,7 +42,6 @@ on init
 
     # Boringssl hacks
     export LD_PRELOAD "libboringssl-compat.so"
-    export LD_SHIM_LIBS "/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/bin/mm-qcamera-daemon|libshim_camera.so"
     
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
