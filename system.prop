@@ -18,6 +18,9 @@ voice.voip.conc.disabled=true
 # Camera
 persist.camera.cpp.duplication=false
 
+# Bluetooth
+bluetooth.hfp.client=1
+
 # Display
 debug.sf.hw=0
 debug.egl.hw=0
