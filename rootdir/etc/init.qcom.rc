@@ -40,7 +40,7 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    export LD_SHIM_LIBS "/system/bin/mm-qcamera-daemon|libshim_camera.so"
+    export LD_SHIM_LIBS "/system/bin/mm-qcamera-daemon|libshim_camera.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so"
     
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
