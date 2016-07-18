@@ -65,6 +65,7 @@ lib/libmm-qcamera.so
 lib/libqomx_core.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
+vendor/lib/libFaceProc.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
@@ -217,6 +218,10 @@ etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/cpp_firmware_v1_4_0.fw
+
+# Consumerir
+lib/hw/consumerir.default.so
+lib64/hw/consumerir.default.so
 
 # DRM (From kipper)
 bin/qseecomd
@@ -409,6 +414,9 @@ vendor/lib64/libcalmodule_common.so
 vendor/lib64/libcalmodule_gyroscope.so
 vendor/lib64/libcalmodule_yamaha.so
 vendor/lib64/libcalmodule_senodia.so
+
+# Sound Trigger
+vendor/lib/hw/sound_trigger.primary.msm8916.so
 
 # Signed Venus (media) firmware
 etc/firmware/venus.b00
