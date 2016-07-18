@@ -66,6 +66,9 @@ lib/libqomx_core.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libFaceProc.so
+vendor/lib/libarcsoft_beauty_shot.so
+vendor/lib/libts_detected_face_hal.so
+vendor/lib/libts_face_beautify_hal.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
@@ -236,33 +239,21 @@ vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
-# GPS
-bin/loc_launcher
-vendor/bin/slim_ap_daemon
-etc/permissions/com.qualcomm.location.xml
+# GPS (From Kipper)
 -lib64/libloc_api_v02.so
 -lib64/libloc_ds_api.so
 -lib/libloc_api_v02.so
 -lib/libloc_ds_api.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/lib64/hw/flp.default.so
+vendor/lib64/libflp.so
 vendor/lib64/libgeofence.so
 vendor/lib64/libizat_core.so
 vendor/lib64/liblbs_core.so
-vendor/lib64/liblocationservice.so
-vendor/lib64/liblowi_client.so
-vendor/lib64/libquipc_os_api.so
-vendor/lib64/libulp2.so
-vendor/lib64/libxtadapter.so
 vendor/lib/hw/flp.default.so
+vendor/lib/libflp.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
-vendor/lib/liblocationservice.so
-vendor/lib/liblowi_client.so
-vendor/lib/libquipc_os_api.so
-vendor/lib/libulp2.so
-vendor/lib/libxtadapter.so
 
 # Graphics (From kipper)
 vendor/lib64/egl/eglsubAndroid.so

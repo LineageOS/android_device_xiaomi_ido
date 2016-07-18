@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -52,16 +52,16 @@
  *============================================================================*/
 
 /* Parameter data */
-static uint8_t DEBUG_LEVEL = 0xff;
-static uint8_t TIMESTAMP = 0;
+static uint32_t DEBUG_LEVEL = 0xff;
+static uint32_t TIMESTAMP = 0;
 
 /* Parameter spec table */
-static loc_param_s_type loc_param_table[] =
+static const loc_param_s_type loc_param_table[] =
 {
     {"DEBUG_LEVEL",    &DEBUG_LEVEL, NULL,    'n'},
     {"TIMESTAMP",      &TIMESTAMP,   NULL,    'n'},
 };
-int loc_param_num = sizeof(loc_param_table) / sizeof(loc_param_s_type);
+static const int loc_param_num = sizeof(loc_param_table) / sizeof(loc_param_s_type);
 
 typedef struct loc_param_v_type
 {
@@ -92,7 +92,7 @@ RETURN VALUE
 SIDE EFFECTS
    N/A
 ===========================================================================*/
-int loc_set_config_entry(loc_param_s_type* config_entry, loc_param_v_type* config_value)
+int loc_set_config_entry(const loc_param_s_type* config_entry, loc_param_v_type* config_value)
 {
     int ret=-1;
     if(NULL == config_entry || NULL == config_value)
@@ -181,7 +181,7 @@ SIDE EFFECTS
    N/A
 ===========================================================================*/
 int loc_fill_conf_item(char* input_buf,
-                       loc_param_s_type* config_table, uint32_t table_length)
+                       const loc_param_s_type* config_table, uint32_t table_length)
 {
     int ret = 0;
 
@@ -258,7 +258,7 @@ RETURN VALUE
 SIDE EFFECTS
    N/A
 ===========================================================================*/
-int loc_read_conf_r(FILE *conf_fp, loc_param_s_type* config_table, uint32_t table_length)
+int loc_read_conf_r(FILE *conf_fp, const loc_param_s_type* config_table, uint32_t table_length)
 {
     int ret=0;
 
@@ -322,27 +322,33 @@ SIDE EFFECTS
    N/A
 ===========================================================================*/
 int loc_update_conf(const char* conf_data, int32_t length,
-                    loc_param_s_type* config_table, uint32_t table_length)
+                    const loc_param_s_type* config_table, uint32_t table_length)
 {
     int ret = -1;
 
     if (conf_data && length && config_table && table_length) {
         // make a copy, so we do not tokenize the original data
         char* conf_copy = (char*)malloc(length+1);
-        memcpy(conf_copy, conf_data, length);
-        // we hard NULL the end of string to be safe
-        conf_copy[length] = 0;
-        // start with one record off
-        uint32_t num_params = table_length - 1;
-        char* saveptr = NULL;
-        char* input_buf = strtok_r(conf_copy, "\n", &saveptr);
-        ret = 0;
 
-        LOC_LOGD("%s:%d]: num_params: %d\n", __func__, __LINE__, num_params);
-        while(num_params && input_buf) {
-            ret++;
-            num_params -= loc_fill_conf_item(input_buf, config_table, table_length);
-            input_buf = strtok_r(NULL, "\n", &saveptr);
+        if (conf_copy != NULL)
+        {
+            memcpy(conf_copy, conf_data, length);
+            // we hard NULL the end of string to be safe
+            conf_copy[length] = 0;
+
+            // start with one record off
+            uint32_t num_params = table_length - 1;
+            char* saveptr = NULL;
+            char* input_buf = strtok_r(conf_copy, "\n", &saveptr);
+            ret = 0;
+
+            LOC_LOGD("%s:%d]: num_params: %d\n", __func__, __LINE__, num_params);
+            while(num_params && input_buf) {
+                ret++;
+                num_params -= loc_fill_conf_item(input_buf, config_table, table_length);
+                input_buf = strtok_r(NULL, "\n", &saveptr);
+            }
+            free(conf_copy);
         }
     }
 
@@ -371,7 +377,7 @@ RETURN VALUE
 SIDE EFFECTS
    N/A
 ===========================================================================*/
-void loc_read_conf(const char* conf_file_name, loc_param_s_type* config_table,
+void loc_read_conf(const char* conf_file_name, const loc_param_s_type* config_table,
                    uint32_t table_length)
 {
     FILE *conf_fp = NULL;

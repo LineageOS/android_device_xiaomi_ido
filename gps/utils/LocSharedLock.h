@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -24,62 +24,36 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
-#ifndef LOC_UTIL_LOG_H
-#define LOC_UTIL_LOG_H
+#ifndef __LOC_SHARED_LOCK__
+#define __LOC_SHARED_LOCK__
 
-#if defined(_ANDROID_)
-#include "loc_api_v02_log.h"
-#include <log_util.h>
+#include <stddef.h>
+#include <cutils/atomic.h>
+#include <pthread.h>
 
-#else // no _ANDROID_
+// This is a utility created for use cases such that there are more than
+// one client who need to share the same lock, but it is not predictable
+// which of these clients is to last to go away. This shared lock deletes
+// itself when the last client calls its drop() method. To add a cient,
+// this share lock's share() method has to be called, so that the obj
+// can maintain an accurate client count.
+class LocSharedLock {
+    volatile int32_t mRef;
+    pthread_mutex_t mMutex;
+    inline ~LocSharedLock() { pthread_mutex_destroy(&mMutex); }
+public:
+    // first client to create this LockSharedLock
+    inline LocSharedLock() : mRef(1) { pthread_mutex_init(&mMutex, NULL); }
+    // following client(s) are to *share()* this lock created by the first client
+    inline LocSharedLock* share() { android_atomic_inc(&mRef); return this; }
+    // whe a client no longer needs this shared lock, drop() shall be called.
+    inline void drop() { if (1 == android_atomic_dec(&mRef)) delete this; }
+    // locking the lock to enter critical section
+    inline void lock() { pthread_mutex_lock(&mMutex); }
+    // unlocking the lock to leave the critical section
+    inline void unlock() { pthread_mutex_unlock(&mMutex); }
+};
 
-#if defined(__LOC_API_V02_LOG_SILENT__)
-#define MSG_LOG
-#define LOC_LOGE(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGW(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGD(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGI(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGV(...) MSG_LOG(__VA_ARGS__);
-#else
-
-// common for QNX and Griffon
-
-//error logs
-#define LOC_LOGE(...) printf(__VA_ARGS__)
-//warning logs
-#define LOC_LOGW(...) printf(__VA_ARGS__)
-// debug logs
-#define LOC_LOGD(...) printf(__VA_ARGS__)
-//info logs
-#define LOC_LOGI(...) printf(__VA_ARGS__)
-//verbose logs
-#define LOC_LOGV(...) printf(__VA_ARGS__)
-#endif //__LOC_API_V02_LOG_SILENT__
-
-#define MODEM_LOG_CALLFLOW(SPEC, VAL)
-#define EXIT_LOG_CALLFLOW(SPEC, VAL)
-
-#define loc_get_v02_event_name(X) #X
-#define loc_get_v02_client_status_name(X) #X
-
-#define loc_get_v02_qmi_status_name(X)  #X
-
-//specific to OFF TARGET
-#ifdef LOC_UTIL_TARGET_OFF_TARGET
-
-#include <stdio.h>
-# include <asm/errno.h>
-# include <sys/time.h>
-
-// get around strl*: not found in glibc
-// TBD:look for presence of eglibc other libraries
-// with strlcpy supported.
-#define strlcpy(X,Y,Z) strcpy(X,Y)
-#define strlcat(X,Y,Z) strcat(X,Y)
-
-#endif //LOC_UTIL_TARGET_OFF_TARGET
-
-#endif //_ANDROID_
-
-#endif //LOC_UTIL_LOG_H
+#endif //__LOC_SHARED_LOCK__

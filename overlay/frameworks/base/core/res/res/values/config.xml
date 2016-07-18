@@ -335,10 +335,10 @@
          performance profiles -->
     <!--<string name="config_perf_profile_default_entry" translatable="false">1</string> -->
 
-    <bool name="config_enableNetworkLocationOverlay">true</bool>
+    <!--<bool name="config_enableNetworkLocationOverlay">true</bool>
     <bool name="config_enableFusedLocationOverlay">true</bool>
     <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
-    <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
+    <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>-->
 
     <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>

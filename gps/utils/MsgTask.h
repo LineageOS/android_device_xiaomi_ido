@@ -1,4 +1,4 @@
-/* Copyright (c) 2011, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2013,2015 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation nor the names of its
+ *     * Neither the name of The Linux Foundation, nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -26,25 +26,42 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#ifndef __MSG_TASK__
+#define __MSG_TASK__
 
-#ifndef LOC_API_V02_LOG_H
-#define LOC_API_V02_LOG_H
+#include <LocThread.h>
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+struct LocMsg {
+    inline LocMsg() {}
+    inline virtual ~LocMsg() {}
+    virtual void proc() const = 0;
+    inline virtual void log() const {}
+};
 
-#include <loc_log.h>
-#include <loc_api_v02_client.h>
+class MsgTask : public LocRunnable {
+    const void* mQ;
+    LocThread* mThread;
+    friend class LocThreadDelegate;
+protected:
+    virtual ~MsgTask();
+public:
+    MsgTask(LocThread::tCreate tCreator, const char* threadName = NULL, bool joinable = true);
+    MsgTask(const char* threadName = NULL, bool joinable = true);
+    // this obj will be deleted once thread is deleted
+    void destroy();
+    void sendMsg(const LocMsg* msg) const;
+    // Overrides of LocRunnable methods
+    // This method will be repeated called until it returns false; or
+    // until thread is stopped.
+    virtual bool run();
 
-const char* loc_get_v02_event_name(uint32_t event);
-const char* loc_get_v02_client_status_name(locClientStatusEnumType status);
-const char* loc_get_v02_qmi_status_name(qmiLocStatusEnumT_v02 status);
+    // The method to be run before thread loop (conditionally repeatedly)
+    // calls run()
+    virtual void prerun();
 
+    // The method to be run after thread loop (conditionally repeatedly)
+    // calls run()
+    inline virtual void postrun() {}
+};
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* LOC_API_V02_LOG_H */
+#endif //__MSG_TASK__
