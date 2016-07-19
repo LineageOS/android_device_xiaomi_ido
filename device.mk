@@ -217,6 +217,7 @@ PRODUCT_PACKAGES += \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwpa_client \
+    libwcnss_qmi
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \

@@ -432,6 +432,3 @@ bin/time_daemon
 vendor/lib64/libTimeService.so
 vendor/lib/libTimeService.so
 
-# WiFi
-lib64/libwcnss_qmi.so
-
