@@ -1,11 +1,12 @@
 # Audio
+audio.dolby.ds2.enabled=true
 ro.qc.sdk.audio.ssr=false
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=false
-tunnel.audio.encode=false
-audio.deep_buffer.media=true
+tunnel.audio.encode = false
+audio.offload.disable=1
 audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
 av.offload.enable=true
@@ -18,12 +19,21 @@ voice.voip.conc.disabled=true
 # Camera
 persist.camera.cpp.duplication=false
 
+# Dex2oat threads for faster app installation
+ro.sys.fw.dex2oat_thread_count=4
+
 # Display
-ro.opengles.version=196609
+debug.sf.hw=0
+debug.egl.hw=0
 persist.hwc.mdpcomp.enable=true
+debug.mdpcomp.logs=0
 debug.composition.type=c2d
-debug.sf.gpu_comp_tiling=1
+dev.pm.dyn_samplingrate=1
+persist.demo.hdmirotationlock=false
+debug.mdpcomp.idletime=600
+debug.enable.sglscale=1
 sys.hwc.gpu_perf_mode=1
+ro.opengles.version=196609
 ro.sf.lcd_density=320
 
 # DRM
@@ -34,11 +44,45 @@ ro.frp.pst=/dev/block/bootdevice/by-name/config
 
 # Gps
 persist.gps.qc_nlp_in_use=1
-persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
-ro.pip.gated=0
+
+# HWUI properties
+ro.hwui.text_large_cache_height=2048
+ro.hwui.texture_cache_size=40
+
+# IO Scheduler
+sys.io.scheduler=bfq
+
+# Media
+media.msm8939hw=1
+mm.enable.smoothstreaming=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+mm.enable.qcom_parser=3407871
+
+# Netmgrd
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
+
+# NITZ
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+
+# Qualcomm
+ro.qualcomm.cabl=2
+ro.qcom.ad=1
+ro.qcom.ad.calib.data=/data/misc/display/ad_calib.cfg
 
 # RIL
+rild.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=22,22
@@ -47,12 +91,16 @@ persist.radio.force_on_dc=true
 persist.radio.apm_sim_not_pwdn=1
 persist.radio.sib16_support=1
 persist.radio.multisim.config=dsds
+telephony.lteOnCdmaDevice=1
 
 # QMI
 persist.data.qmi.adb_logmask=0
 
 # QC vendor extension
 ro.vendor.extension_library=libqti-perfd-client.so
+
+# Time
+persist.timed.enable=true
 
 # WIFI
 wifi.interface=wlan0
