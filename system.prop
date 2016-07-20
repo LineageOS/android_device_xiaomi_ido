@@ -1,12 +1,11 @@
 # Audio
-audio.dolby.ds2.enabled=true
 ro.qc.sdk.audio.ssr=false
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=false
-tunnel.audio.encode = false
-audio.offload.disable=1
+tunnel.audio.encode=false
+audio.deep_buffer.media=true
 audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
 av.offload.enable=true
