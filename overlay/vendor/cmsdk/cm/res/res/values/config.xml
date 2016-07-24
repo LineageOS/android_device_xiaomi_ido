@@ -17,9 +17,9 @@
 <resources>
 
     <!-- Default wi-fi hotspot ssid -->
-    <string name="config_wifiHotSpotSsid" translatable="false">cp8675</string>
+    <string name="config_wifiHotSpotSsid" translatable="false">Redmi 3</string>
     <!-- Default wi-fi direct name -->
-    <string name="config_wifiDirectName" translatable="false">cp8675</string>
+    <string name="config_wifiDirectName" translatable="false">Redmi 3</string>
 
     <!-- Default value for proximity check on screen wake
      NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)-->
