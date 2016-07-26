@@ -39,10 +39,6 @@ vidc.enc.narrow.searchrange=1
 # Factory reset protection
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 
-# Gps
-persist.gps.qc_nlp_in_use=1
-ro.gps.agps_provider=1
-
 # HWUI properties
 ro.hwui.text_large_cache_height=2048
 ro.hwui.texture_cache_size=40
