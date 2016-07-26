@@ -105,7 +105,6 @@ USE_OPENGL_RENDERER := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-TARGET_SWV8_DISK_ENCRYPTION := true
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -155,12 +154,14 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
 # RIL
 TARGET_RIL_VARIANT := caf
-PROTOBUF_SUPPORTED := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
+
+# Video
+TARGET_HAVE_SIGNED_VENUS_FW := true
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
