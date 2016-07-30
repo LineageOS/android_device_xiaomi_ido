@@ -335,6 +335,9 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">71</integer>
 
+    <!-- Operating volatage for bluetooth controller. 0 by default-->
+    <integer translatable="false" name="config_bluetooth_operating_voltage_mv">3300</integer>
+
     <!-- Is the device capable of hot swapping an UICC Card -->
     <bool name="config_hotswapCapable">true</bool>  
 
