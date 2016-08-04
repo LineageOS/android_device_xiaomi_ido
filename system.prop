@@ -70,12 +70,7 @@ ro.sys.fw.dex2oat_thread_count=4
 ro.config.max_starting_bg=8
 ro.sys.fw.use_trim_settings=true
 
-# Qualcomm
-ro.qualcomm.cabl=2
-ro.qcom.ad=1
-ro.qcom.ad.calib.data=/data/misc/display/ad_calib.cfg
-
-# RIL
+# Radio
 rild.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 ro.telephony.call_ring.multiple=false
