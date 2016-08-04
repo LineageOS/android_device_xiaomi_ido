@@ -46,9 +46,6 @@ ro.frp.pst=/dev/block/bootdevice/by-name/config
 ro.hwui.text_large_cache_height=2048
 ro.hwui.texture_cache_size=40
 
-# IO Scheduler
-sys.io.scheduler=bfq
-
 # Media
 media.msm8939hw=1
 mm.enable.smoothstreaming=true
