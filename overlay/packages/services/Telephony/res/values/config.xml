@@ -29,9 +29,6 @@
     <!-- Flag indicating if the phone is a world phone -->
     <bool name="world_phone">true</bool>
 
-<!-- Flag indicating if the phone is a world phone -->
-    <bool name="world_phone">true</bool>
-
     <!-- Flag indicating if dtmf tone type is enabled -->
     <bool name="dtmf_type_enabled">true</bool>
 
@@ -45,6 +42,9 @@
          ignored and manual operator selection will always be available. See
          CPHS4_2.WW6, CPHS B.4.7.1 for more information -->
     <bool name="csp_enabled">true</bool>
+
+    <!-- Show enabled lte option for lte device -->
+    <bool name="config_enabled_lte" translatable="false">true</bool>
 
     <!-- Show APN Settings for some CDMA carriers -->
     <bool name="config_show_apn_setting_cdma">true</bool>
