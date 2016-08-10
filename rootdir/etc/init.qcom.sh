@@ -82,9 +82,8 @@ bootmode=`getprop ro.bootmode`
 emmc_boot=`getprop ro.boot.emmc`
 case "$emmc_boot"
     in "true")
-        if [ "$bootmode" != "charger" ]; then # start rmt_storage and rfs_access
+        if [ "$bootmode" != "charger" ]; then # start rmt_storage
             start rmt_storage
-            start rfs_access
         fi
     ;;
 esac
