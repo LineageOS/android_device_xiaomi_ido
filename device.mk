@@ -104,10 +104,6 @@ PRODUCT_PACKAGES += \
     libstlport \
     Snap
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
-
 # DataServices
 PRODUCT_PACKAGES += \
     librmnetctl
