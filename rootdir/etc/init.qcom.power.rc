@@ -56,7 +56,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 800000:90"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-    wrute /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor 40000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 800000
 
     # Enable thermal core_control now
