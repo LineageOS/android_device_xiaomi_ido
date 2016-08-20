@@ -1,9 +1,4 @@
-on boot
-    # Update foreground cpuset now that processors are up
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/foreground/boost/cpus 0-3
-    write /dev/cpuset/background/cpus 4-5
-    write /dev/cpuset/system-background/cpus 4-7
+# Qualcomm Power Management script
 
 on enable-low-power
     write /proc/sys/kernel/sched_boost 1
@@ -62,10 +57,6 @@ on enable-low-power
     # Enable thermal core_control now
     write /sys/module/msm_thermal/core_control/enabled 1
 
-    # HMP scheduler (big.Little cluster related) settings
-    write /proc/sys/kernel/sched_upmigrate 75
-    write /proc/sys/kernel/sched_downmigrate 60
-
     # Bring all CPUs online
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
@@ -74,8 +65,18 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu6/online 1
     write /sys/devices/system/cpu/cpu7/online 1
 
+    # Update foreground cpuset now that processors are up
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 4-5
+    write /dev/cpuset/system-background/cpus 4-7
+
     # Enable low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # HMP scheduler (big.Little cluster related) settings
+    write /proc/sys/kernel/sched_upmigrate 75
+    write /proc/sys/kernel/sched_downmigrate 60
 
     # CPU idle load threshold
     write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 30
