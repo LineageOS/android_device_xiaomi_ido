@@ -100,3 +100,8 @@ chown -hR radio.radio /data/misc/radio/modem_config
 echo 1 > /data/misc/radio/copy_complete
 chown radio:radio /data/misc/radio/copy_complete
 
+# Create /persist/alarm if necessary
+if [ ! -d /persist/alarm ]; then
+    mkdir /persist/alarm
+    chown system:system /persist/alarm
+fi
