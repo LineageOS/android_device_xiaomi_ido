@@ -1,3 +1,5 @@
 allow mediaserver sensorservice_service:service_manager find;
+allow mediaserver system_file:file execmod;
+allow mediaserver system_data_file:file { open execmod };
 binder_call(mediaserver, servicemanager);
 binder_call(mediaserver, sensorservice_service);

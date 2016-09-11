@@ -1,0 +1,2 @@
+allow tee system_prop:property_service set;
+allow tee vfat:file { read getattr open };

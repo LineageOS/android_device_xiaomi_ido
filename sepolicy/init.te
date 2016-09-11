@@ -1,0 +1,2 @@
+allow init vfat:file read;
+allow init vfat:file { getattr open };
