@@ -391,6 +391,10 @@ etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/cpp_firmware_v1_4_0.fw
 
+# ConsumerIR
+lib/hw/consumerir.msm8916.so
+lib64/hw/consumerir.msm8916.so
+
 # DRM (From kipper)
 bin/qseecomd
 vendor/lib64/libdrmfs.so
