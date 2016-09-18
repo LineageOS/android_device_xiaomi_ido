@@ -104,4 +104,5 @@ chown radio:radio /data/misc/radio/copy_complete
 if [ ! -d /persist/alarm ]; then
     mkdir /persist/alarm
     chown system:system /persist/alarm
+    restorecon /persist/alarm
 fi
