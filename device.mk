@@ -112,6 +112,11 @@ PRODUCT_PACKAGES += \
     memtrack.msm8916 \
     liboverlay
 
+# FM
+PRODUCT_PACKAGES += \
+    FMRadio \
+    libfmjni
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8916
