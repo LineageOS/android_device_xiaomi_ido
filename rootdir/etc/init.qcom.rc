@@ -538,3 +538,12 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     disabled
     writepid /dev/cpuset/system-background/tasks
 
+on property:sys.boot_completed=1
+    start config_lineout
+
+service config_lineout /system/bin/sh /system/etc/init.lineout.sh
+    user root
+    group root
+    class late_start
+    oneshot
+    disabled
