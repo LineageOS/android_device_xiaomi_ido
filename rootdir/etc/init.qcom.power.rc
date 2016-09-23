@@ -1,6 +1,8 @@
 # Qualcomm Power Management script
 
 on enable-low-power
+
+    # Sched Boost
     write /proc/sys/kernel/sched_boost 1
 
     # RPS mask
@@ -68,11 +70,24 @@ on enable-low-power
     # Update foreground cpuset now that processors are up
     write /dev/cpuset/foreground/cpus 0-7
     write /dev/cpuset/foreground/boost/cpus 0-3
-    write /dev/cpuset/background/cpus 4-5
+    write /dev/cpuset/background/cpus 4
     write /dev/cpuset/system-background/cpus 4-7
 
     # Enable low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # Enable core control and set userspace permission
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 0
+    write /sys/devices/system/cpu/cpu0/core_ctl/max_cpus 4
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 68
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 40
+    write /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms 100
+    write /sys/devices/system/cpu/cpu0/core_ctl/task_thres 4
+    write /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster 1
+    write /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres 20
+    write /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres 5
+    write /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms 5000
+    write /sys/devices/system/cpu/cpu4/core_ctl/not_preferred 1
 
     # HMP scheduler (big.Little cluster related) settings
     write /proc/sys/kernel/sched_upmigrate 75
@@ -105,7 +120,11 @@ on enable-low-power
     write /sys/module/process_reclaim/parameters/swap_opt_eff 30
 
     rm /data/system/perfd/default_values
+    rm /data/system/perfd/default_values
     start perfd
+
+    setprop ro.min_freq_0 960000
+    setprop ro.min_freq_4 800000
 
 on charger
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
@@ -118,4 +137,4 @@ on property:init.svc.recovery=running
     trigger enable-low-power
 
 on property:dev.bootcomplete=1
-    setprop sys.io.scheduler bfq
+    setprop sys.io.scheduler "bfq"

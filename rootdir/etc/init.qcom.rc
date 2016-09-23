@@ -533,7 +533,6 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     class core
     user root
     group root
-    disabled
     writepid /dev/cpuset/system-background/tasks
 
 on property:sys.boot_completed=1
