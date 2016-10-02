@@ -63,6 +63,13 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu6/online 1
     write /sys/devices/system/cpu/cpu7/online 1
 
+    # add a cpuset for the camera daemon
+    # we want all the little cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
     # Configure foreground and background cpusets
     # Reserve CPU 7 for the top app
     write /dev/cpuset/foreground/cpus 0-6
@@ -70,6 +77,7 @@ on enable-low-power
     write /dev/cpuset/background/cpus 4
     write /dev/cpuset/system-background/cpus 4-6
     write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/camera-daemon/cpus 4-7
 
     # Enable low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
