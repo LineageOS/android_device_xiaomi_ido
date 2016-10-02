@@ -14,18 +14,19 @@ on enable-low-power
 
     # HMP scheduler load tracking settings
     write /proc/sys/kernel/sched_window_stats_policy 3
-    write /proc/sys/kernel/sched_ravg_hist_size 5
+    write /proc/sys/kernel/sched_ravg_hist_size 3
+    write /proc/sys/kernel/sched_ravg_window 20000000
 
     # HMP Task packing settings for 8939, 8929
     write /proc/sys/kernel/sched_small_task 20
     write /proc/sys/kernel/sched_mostly_idle_load 30
     write /proc/sys/kernel/sched_mostly_idle_nr_run 3
+    write /proc/sys/kernel/sched_prefer_idle 0
 
-    write /sys/class/devfreq/qcom,cpubw.64/governor "bw_hwmon"
-    write /sys/class/devfreq/qcom,cpubw.64/bw_hwmon/io_percent 20
-    write /sys/class/devfreq/qcom,gpubw.61/governor "bw_hwmon"
-    write /sys/class/devfreq/qcom,gpubw.61/bw_hwmon/io_percent 40
-    write /sys/class/devfreq/qcom,mincpubw.65/governor "cpufreq"
+    write /sys/class/devfreq/cpubw/governor "bw_hwmon"
+    write /sys/class/devfreq/cpubw/bw_hwmon/io_percent 20
+    write /sys/class/devfreq/gpubw/bw_hwmon/io_percent 40
+    write /sys/class/devfreq/mincpubw/governor "cpufreq"
 
     # Disable thermal core_control to update interactive gov settings
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -90,27 +91,16 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu4/core_ctl/not_preferred 1
 
     # HMP scheduler (big.Little cluster related) settings
-    write /proc/sys/kernel/sched_upmigrate 75
-    write /proc/sys/kernel/sched_downmigrate 60
+    write /proc/sys/kernel/sched_upmigrate 93
+    write /proc/sys/kernel/sched_downmigrate 83
 
-    # CPU idle load threshold
-    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu5/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu6/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu7/sched_mostly_idle_load 30
-
-    write /sys/devices/system/cpu/cpu0/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu1/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu2/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu3/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu4/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu5/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu6/sched_prefer_idle 0
-    write /sys/devices/system/cpu/cpu7/sched_prefer_idle 0
+    # Enable sched guided freq control
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
+    write /proc/sys/kernel/sched_freq_inc_notify 50000
+    write /proc/sys/kernel/sched_freq_dec_notify 50000
 
     # Per-process reclaim
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
@@ -118,6 +108,9 @@ on enable-low-power
     write /sys/module/process_reclaim/parameters/per_swap_size 1024
     write /sys/module/process_reclaim/parameters/pressure_max 70
     write /sys/module/process_reclaim/parameters/swap_opt_eff 30
+
+    # Enable dynamic clock gating
+    write /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating 1
 
     rm /data/system/perfd/default_values
     rm /data/system/perfd/default_values
