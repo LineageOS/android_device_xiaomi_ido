@@ -20,6 +20,9 @@ use.voice.path.for.pcm.voip=true
 # Bluetooth
 bluetooth.hfp.client=1
 
+# Bluetooth
+qcom.bluetooth.soc=smd
+
 # Camera
 persist.camera.cpp.duplication=false
 
