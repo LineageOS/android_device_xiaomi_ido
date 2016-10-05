@@ -194,7 +194,13 @@
 /sys/devices/virtual/optical_sensors/lightsensor    ls_poll_delay  0660    input    system
 /sys/devices/virtual/input/input*                   poll           0660    input    system
 /sys/devices/virtual/input/input*                   pollrate_ms    0660    input    system
-/sys/devices/soc.0/fpc1020.70                       enable_wakeup  0666    input    system
+
+# fpc1020 Fingerprint
+/sys/devices/soc.0/fpc1020*             enable_wakeup  0666    input     system
+/sys/devices/soc.0/fpc1020*             clk_enable     0660   system     system
+/sys/devices/soc.0/fpc1020*             hw_reset       0220   system     system
+/sys/devices/soc.0/fpc1020*             irq            0660   system     system
+/sys/devices/soc.0/fpc1020*             spi_prepare    0660   system     system
 
 # CTP
 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0038/sensors/ft5x06-proximity	enable	0660	input	system

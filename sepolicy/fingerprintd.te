@@ -1,0 +1,9 @@
+allow fingerprintd tee_device:chr_file { read write ioctl open };
+
+allow fingerprintd firmware_file:dir search;
+allow fingerprintd firmware_file:file { getattr read open };
+
+allow fingerprintd fpc_data_file:dir create_dir_perms;
+allow fingerprintd fpc_data_file:sock_file { create unlink };
+
+allow fingerprintd fpc_sysfs:file rw_file_perms;

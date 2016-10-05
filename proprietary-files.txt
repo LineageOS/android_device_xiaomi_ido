@@ -395,6 +395,13 @@ etc/firmware/cpp_firmware_v1_4_0.fw
 lib/hw/consumerir.msm8916.so
 lib64/hw/consumerir.msm8916.so
 
+# Fingerprint Firmware
+vendor/firmware/tzfinger.b00
+vendor/firmware/tzfinger.b01
+vendor/firmware/tzfinger.b02
+vendor/firmware/tzfinger.b03
+vendor/firmware/tzfinger.mdt
+
 # DRM (From kipper)
 bin/qseecomd
 vendor/lib64/libdrmfs.so

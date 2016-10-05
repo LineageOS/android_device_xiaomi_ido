@@ -2,3 +2,12 @@
 /persist/.bt_nv.bin                             u:object_r:bluetooth_data_file:s0
 
 /system/etc/init\.qcom\.bt\.sh                  u:object_r:bluetooth_loader_exec:s0
+
+# Fingerprint
+/dev/socket/fpce                                u:object_r:fpc_socket:s0
+/data/fpc(/.*)?                                 u:object_r:fpc_data_file:s0
+/sys/devices/soc.0/fpc1020.*/hw_reset           u:object_r:fpc_sysfs:s0
+/sys/devices/soc.0/fpc1020.*/irq                u:object_r:fpc_sysfs:s0
+/sys/devices/soc.0/fpc1020.*/wakeup_enable      u:object_r:fpc_sysfs:s0
+/sys/devices/soc.0/fpc1020.*/clk_enable         u:object_r:fpc_sysfs:s0
+/sys/devices/soc.0/fpc1020.*/spi_prepare        u:object_r:fpc_sysfs:s0
