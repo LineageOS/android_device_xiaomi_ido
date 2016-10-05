@@ -94,22 +94,14 @@ on enable-low-power
     write /proc/sys/kernel/sched_freq_inc_notify 50000
     write /proc/sys/kernel/sched_freq_dec_notify 50000
 
-    # Per-process reclaim
-    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
-    write /sys/module/process_reclaim/parameters/pressure_min 10
-    write /sys/module/process_reclaim/parameters/per_swap_size 1024
-    write /sys/module/process_reclaim/parameters/pressure_max 70
-    write /sys/module/process_reclaim/parameters/swap_opt_eff 30
-
     # Enable dynamic clock gating
     write /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating 1
 
-    rm /data/system/perfd/default_values
-    rm /data/system/perfd/default_values
-    start perfd
-
+    # Set perfd properties
     setprop ro.min_freq_0 960000
     setprop ro.min_freq_4 800000
+
+    start perfd
 
 on charger
     write /sys/module/lpm_levels/parameters/sleep_disabled 0

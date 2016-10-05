@@ -66,10 +66,6 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
 # Perf
-ro.core_ctl_min_cpu=2
-ro.core_ctl_max_cpu=4
-ro.min_freq_0 960000
-ro.min_freq_4 800000
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # QMI

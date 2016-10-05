@@ -14,43 +14,39 @@
  * limitations under the License.
  */
 
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+
 #define LOG_TAG "PowerHAL_MSM8939_Ext"
-
 #include <utils/Log.h>
-#include "utils.h"
 
-#define BIG_CLUSTER_CTL_PATH "/sys/devices/system/cpu/cpu0/core_ctl/"
-#define SMALL_CLUSTER_CTL_PATH "/sys/devices/system/cpu/cpu4/core_ctl/"
+#define BIG_MAX_CPU_PATH "/sys/devices/system/cpu/cpu0/core_ctl/max_cpus"
 
-/**
- * If target is 8916:
- *     return 1
- * else:
- *     return 0
- */
-static int is_target_8916(void)
+static void sysfs_write(char *path, char *s)
 {
-    static int is_8916 = -1;
-    int soc_id;
+    char buf[80];
+    int len;
+    int fd;
 
-    if (is_8916 >= 0)
-        return is_8916;
+    if ((fd = open(path, O_WRONLY)) < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error opening %s: %s\n", path, buf);
+        return;
+    }
 
-    soc_id = get_soc_id();
-    if (soc_id == 206 || (soc_id >= 247 && soc_id <= 250))
-        is_8916 = 1;
-    else
-        is_8916 = 0;
+    len = write(fd, s, strlen(s));
+    if (len < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error writing to %s: %s\n", path, buf);
+    }
 
-    return is_8916;
+    close(fd);
 }
 
 void cm_power_set_interactive_ext(int on)
 {
-    if (!is_target_8916()) {
-        ALOGD("%s low power mode", on ? "Disabling" : "Enabling");
-        sysfs_write(BIG_CLUSTER_CTL_PATH "max_cpus", on ? "4" : "0");
-        sysfs_write(BIG_CLUSTER_CTL_PATH "min_cpus", on ? "4" : "0");
-        sysfs_write(SMALL_CLUSTER_CTL_PATH "min_cpus", on ? "0" : "4");
-    }
+    ALOGD("%sabling big CPU cluster", on ? "En" : "Dis");
+    sysfs_write(BIG_MAX_CPU_PATH, on ? "4" : "0");
 }
