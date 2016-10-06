@@ -315,7 +315,6 @@ on property:sys.boot_completed=1
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
-    start config_bluetooth
     start wcnss-service
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
@@ -328,11 +327,6 @@ service rmt_storage /system/bin/rmt_storage
     user root
     group wakelock
     writepid /dev/cpuset/system-background/tasks
-
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
-    class core
-    user root
-    oneshot
 
 service config_bt_addr /system/bin/btnvtool -O
     class core
