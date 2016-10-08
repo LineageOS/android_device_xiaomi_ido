@@ -269,8 +269,7 @@ int fpc_wait_for_finger()
     ALOGD("%s : SPI_IRQ_FILE poll\n", __func__);
     if (sys_fs_irq_poll(SPI_IRQ_FILE) < 0) {
         sysfs_write(SPI_CLK_FILE,"1");
-        sysfs_write(SPI_WAKE_FILE,"disable");
-       
+//        sysfs_write(SPI_WAKE_FILE,"disable");     
         return 1;
     }
 
@@ -317,7 +316,9 @@ int fpc_capture_image()
     if (ret == 0) {
         //If wait reported 0 we can try and capture the image
         ret = send_normal_command(FPC_CAPTURE_IMAGE,0,mHandle);
-    } 
+    } else if (ret == 1) {
+        ret = 1000;
+    }
 
     if (device_disable() < 0) {
         ALOGE("Error stopping device\n");
