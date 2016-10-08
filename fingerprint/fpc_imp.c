@@ -241,12 +241,8 @@ int fpc_wait_for_finger()
 
     int finger_state  = send_normal_command(FPC_CHK_FP_LOST,FPC_CHK_FP_LOST,mHandle);
 
-    ALOGD("%s : got finget_state = %d\n", __func__, finger_state);
-//    return -1;
-    // 4 - finger detected
-    // 6 - no
 
-    /*if (finger_state == 4) {
+    if (finger_state == 4) {
         ALOGD("%s : WAIT FOR FINGER UP\n", __func__);
     } else if (finger_state == 6) {
         ALOGD("%s : WAIT FOR FINGER DOWN\n", __func__);
@@ -255,12 +251,10 @@ int fpc_wait_for_finger()
         return 1;
     } else {
         return -1;
-    }*/
+    }
 
-    
-    if (finger_state == 10) {
-        return finger_state;
-    } 
+    ALOGD("%s : got finget_state = %d\n", __func__, finger_state);
+
 
     // 4 and 6
     sysfs_write(SPI_WAKE_FILE,"enable");
@@ -276,17 +270,22 @@ int fpc_wait_for_finger()
     if (sys_fs_irq_poll(SPI_IRQ_FILE) < 0) {
         sysfs_write(SPI_CLK_FILE,"1");
         sysfs_write(SPI_WAKE_FILE,"disable");
-        
-
-        if (finger_state == 6)
-             return 6;
+       
+        return 1;
     }
 
-    ALOGD("%s : SPI_CLK_FILE 1\n", __func__);
     sysfs_write(SPI_CLK_FILE,"1");
     sysfs_write(SPI_WAKE_FILE,"disable");
+    
+    if (finger_state == 6)
+    {
+        return finger_state;
+    }
+
 
     int wake_type = send_normal_command(FPC_GET_WAKE_TYPE,0,mHandle);
+
+
 
     //5 ready to capture
     //4 waiting stable
@@ -294,7 +293,7 @@ int fpc_wait_for_finger()
     // 6 too fast
     if (wake_type == 5) { 
         ALOGD("%s : READY TO CAPTURE\n", __func__);
-        return 4;
+        return 0;
     } else {
         ALOGD("%s : NOT READY TRY AGAIN\n", __func__);
         return 1;
@@ -315,9 +314,8 @@ int fpc_capture_image()
 
     int ret = fpc_wait_for_finger();
 
-    if (ret == 4) {
+    if (ret == 0) {
         //If wait reported 0 we can try and capture the image
-    	ALOGE("Trying capture image \n");
         ret = send_normal_command(FPC_CAPTURE_IMAGE,0,mHandle);
     } 
 

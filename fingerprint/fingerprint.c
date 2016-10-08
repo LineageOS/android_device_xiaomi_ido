@@ -76,6 +76,7 @@ void *enroll_thread_loop()
         		    remaining_touches--;
 
                     while (fpc_capture_image() == 6 ) {
+                        //wait finger up (not working good, maybe need state machine)
                         usleep(5000);
                     }
 
@@ -110,6 +111,7 @@ void *enroll_thread_loop()
                 msg.data.enroll.samples_remaining = 0;
                 msg.data.enroll.msg = 0;
                 callback(&msg);
+
                 break;
             }
         }
@@ -158,8 +160,8 @@ void *auth_thread_loop()
 
             if (verify_state >= 0) {
 
-//                uint32_t print_id = fpc_get_print_id(verify_state);
-//                ALOGI("%s : Got print id : %lu", __func__, (unsigned long) print_id);
+                uint32_t print_id = verify_state+1;
+                ALOGI("%s : Got print id : %lu", __func__, (unsigned long) print_id);
 
                 hw_auth_token_t hat = {0};
                 //fpc_get_hw_auth_obj(&hat, sizeof(hw_auth_token_t));
@@ -184,12 +186,12 @@ void *auth_thread_loop()
                 fingerprint_msg_t msg = {0};
                 msg.type = FINGERPRINT_AUTHENTICATED;
                 msg.data.authenticated.finger.gid = 0;
-                msg.data.authenticated.finger.fid = 1;
+                msg.data.authenticated.finger.fid = print_id;
                 msg.data.authenticated.hat = hat;
                 callback(&msg);
 
                 break;
-            }
+            } 
         }
 
         pthread_mutex_lock(&lock);
