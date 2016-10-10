@@ -20,6 +20,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <poll.h>
+#include <pthread.h>
 
 #define LOG_TAG "FPC IMP"
 #define LOG_NDEBUG 0
@@ -30,6 +31,10 @@
 #define SPI_PREP_FILE "/sys/devices/soc.0/fpc1020.70/spi_prepare"
 #define SPI_WAKE_FILE "/sys/devices/soc.0/fpc1020.70/wakeup_enable"
 #define SPI_IRQ_FILE "/sys/devices/soc.0/fpc1020.70/irq"
+
+int control_pipe[2];
+bool do_not_poll = false;
+pthread_mutex_t lock_pipe;
 
 static int qsee_load_trustlet(struct QSEECom_handle **clnt_handle,
                        const char *path, const char *fname,
@@ -95,7 +100,45 @@ int sys_fs_irq_poll(char *path)
     read(pollfds[0].fd, &dummybuf, 1);
     pollfds[0].events = POLLPRI;
 
-    result = poll(pollfds, 1, 1000);
+
+    pthread_mutex_lock(&lock_pipe);
+
+    if (do_not_poll) {
+        ALOGE("Flag to skip next poll set\n");
+        do_not_poll = false;
+       pthread_mutex_unlock(&lock_pipe);
+       return -1 ; 
+    }
+    if(pipe(control_pipe) == -1 ) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error opening control pipe %s\n", buf);
+        pthread_mutex_unlock(&lock_pipe);
+        return -1 ;
+    }
+    pthread_mutex_unlock(&lock_pipe);
+
+    pollfds[1].fd=control_pipe[0];
+    pollfds[1].events = POLLIN;
+  
+    result = poll(pollfds, 2, -1);
+    if (pollfds[1].revents & POLLIN && result > 0) {
+        read(pollfds[1].fd, &dummybuf, 1);
+        ALOGE("Poll canceled trough pipe%s\n", buf);
+        close(control_pipe[0]);
+        close(control_pipe[1]);
+        pthread_mutex_lock(&lock_pipe);
+        control_pipe[0] = -1;
+        control_pipe[1] = -1;
+        pthread_mutex_unlock(&lock_pipe);
+        close(pollfds[0].fd);
+        return -1;    
+    }
+    pthread_mutex_lock(&lock_pipe);     
+    close(control_pipe[0]);
+    close(control_pipe[1]);
+    control_pipe[0] = -1;
+    control_pipe[1] = -1;
+    pthread_mutex_unlock(&lock_pipe);
 
     switch (result) {
     case 0:
@@ -223,6 +266,26 @@ uint64_t get_int64_command(uint32_t cmd, uint32_t param, struct QSEECom_handle *
 
 }
 
+void cancel_poll()
+{
+
+    ALOGE("Enter to cancel polling\n");
+    char* cancel_buf[1];
+    memset(cancel_buf,  0xFA, 1);
+
+
+    pthread_mutex_lock(&lock_pipe);
+    do_not_poll = true; 
+    if (control_pipe[1] >= 0 ){
+        ALOGE("Trying to cancel polling\n");
+        write(control_pipe[1], cancel_buf, 1);
+    } else { 
+        
+        ALOGE("Control pipe not inialised\n");
+    }
+    pthread_mutex_unlock(&lock_pipe);
+}
+
 uint64_t fpc_load_db_id()
 {
 	return 0;
@@ -269,7 +332,7 @@ int fpc_wait_for_finger()
     ALOGD("%s : SPI_IRQ_FILE poll\n", __func__);
     if (sys_fs_irq_poll(SPI_IRQ_FILE) < 0) {
         sysfs_write(SPI_CLK_FILE,"1");
-//        sysfs_write(SPI_WAKE_FILE,"disable");     
+        sysfs_write(SPI_WAKE_FILE,"disable");     
         return 1;
     }
 
@@ -278,7 +341,7 @@ int fpc_wait_for_finger()
     
     if (finger_state == 6)
     {
-        return finger_state;
+        return 1;
     }
 
 
@@ -666,6 +729,9 @@ int fpc_close()
 int fpc_init()
 {
     int ret = 0;
+    control_pipe[0] = -1;
+    control_pipe[1] = -1;
+    
 
     ALOGE("INIT FPC TZ APP\n");
 

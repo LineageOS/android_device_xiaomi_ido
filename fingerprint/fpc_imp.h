@@ -45,4 +45,5 @@ uint32_t fpc_load_user_db(char* path); //load user DB into TZ app from storage
 uint32_t fpc_store_user_db(uint32_t length, char* path); //store running TZ db
 int fpc_close(); //close this implementation
 int fpc_init(); //init sensor
+void cancel_poll();
 #endif

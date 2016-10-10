@@ -75,11 +75,6 @@ void *enroll_thread_loop()
                     callback(&msg);
         		    remaining_touches--;
 
-                    while (fpc_capture_image() == 6 ) {
-                        //wait finger up (not working good, maybe need state machine)
-                        usleep(5000);
-                    }
-
                   } 
 
 
@@ -126,6 +121,7 @@ void *enroll_thread_loop()
 
     fpc_enroll_end();
     ALOGI("%s : finishing",__func__);
+
 
     pthread_mutex_lock(&lock);
     auth_thread_running = false;
@@ -201,10 +197,9 @@ void *auth_thread_loop()
         }
         pthread_mutex_unlock(&lock);
     }
-
     fpc_auth_end();
     ALOGI("%s : finishing",__func__);
-
+    
     pthread_mutex_lock(&lock);
     auth_thread_running = false;
     pthread_mutex_unlock(&lock);
@@ -213,6 +208,7 @@ void *auth_thread_loop()
 
 static int fingerprint_close(hw_device_t *dev)
 {
+    ALOGI("%s",__func__);
     fpc_close();
     if (dev) {
         free(dev);
@@ -238,12 +234,11 @@ static int fingerprint_enroll(struct fingerprint_device __unused *dev,
                               uint32_t __unused gid,
                               uint32_t __unused timeout_sec)
 {
-
-
+    
     pthread_mutex_lock(&lock);
     bool thread_running = auth_thread_running;
     pthread_mutex_unlock(&lock);
-
+    
     if (thread_running) {
         ALOGE("%s : Error, thread already running\n", __func__);
         return -1;
@@ -288,7 +283,6 @@ static uint64_t fingerprint_get_auth_id(struct fingerprint_device __unused *dev)
 static int fingerprint_cancel(struct fingerprint_device __unused *dev)
 {
     ALOGI("%s : +",__func__);
-
     pthread_mutex_lock(&lock);
     bool thread_running = auth_thread_running;
     pthread_mutex_unlock(&lock);
@@ -299,10 +293,11 @@ static int fingerprint_cancel(struct fingerprint_device __unused *dev)
         return 0;
     }
 
+
     pthread_mutex_lock(&lock);
     auth_thread_running = false;
     pthread_mutex_unlock(&lock);
-
+    cancel_poll();
     ALOGI("%s : join running thread",__func__);
     pthread_join(thread, NULL);
 
