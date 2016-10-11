@@ -525,16 +525,6 @@ on property:init.svc.surfaceflinger=stopped
 on property:init.svc.surfaceflinger=running
     start ppd
 
-on property:sys.boot_completed=1
-    start config_lineout
-
-service config_lineout /system/bin/sh /system/etc/init.lineout.sh
-    user root
-    group root
-    class late_start
-    oneshot
-    disabled
-
 service fingerprintd /system/bin/fingerprintd
     class late_start
     socket fpce stream 0666 system system
