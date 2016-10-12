@@ -63,11 +63,13 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu6/online 1
     write /sys/devices/system/cpu/cpu7/online 1
 
-    # Configure foreground and background cpuset
-    write /dev/cpuset/foreground/cpus 0-7
+    # Configure foreground and background cpusets
+    # Reserve CPU 7 for the top app
+    write /dev/cpuset/foreground/cpus 0-6
     write /dev/cpuset/foreground/boost/cpus 0-3
     write /dev/cpuset/background/cpus 4
-    write /dev/cpuset/system-background/cpus 4-7
+    write /dev/cpuset/system-background/cpus 4-6
+    write /dev/cpuset/top-app/cpus 0-7
 
     # Enable low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
