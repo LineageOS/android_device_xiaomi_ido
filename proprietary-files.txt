@@ -520,7 +520,7 @@ vendor/lib/libmm-abl-oem.so
 vendor/lib/libmm-disp-apis.so
 vendor/lib/libmm-qdcm.so
 
-# Qualcomm framework
+# Qualcomm framework (From tomato)
 bin/irsc_util
 vendor/lib64/libdiag.so
 vendor/lib64/libdsi_netctrl.so
@@ -555,26 +555,31 @@ vendor/lib/libqmiservices.so
 vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
 
-# Radio
--priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+# Radio (From tomato)
 -app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
 bin/qmuxd
+bin/radish
 bin/rfs_access
 bin/rmt_storage
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
-vendor/lib64/libcneapiclient.so
+-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/lib64/libconfigdb.so
+vendor/lib64/libcneapiclient.so
+vendor/lib64/liblqe.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
 vendor/lib64/libperipheral_client.so
 vendor/lib64/libril-qc-qmi-1.so
+vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
+vendor/lib/libmdmdetect.so
+vendor/lib/libcneapiclient.so
 
 # Sensors
 lib64/hw/sensors.msm8916.so

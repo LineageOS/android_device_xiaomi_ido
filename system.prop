@@ -77,17 +77,14 @@ ro.vendor.extension_library=libqti-perfd-client.so
 persist.data.qmi.adb_logmask=0
 
 # Radio
-rild.libargs=-d /dev/smd0
+DEVICE_PROVISIONED=1
+ril.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 ro.telephony.call_ring.multiple=false
-ro.telephony.default_network=22,22
-ro.telephony.ril.config=simactivation
-ro.ril.multi_rat_capable=true
-persist.radio.force_on_dc=true
+ril.subscription.types=NV,RUIM
 persist.radio.apm_sim_not_pwdn=1
-persist.radio.sib16_support=1
 persist.radio.multisim.config=dsds
-telephony.lteOnCdmaDevice=1
+ro.telephony.default_network=9,9
 
 # Time
 persist.timed.enable=true
