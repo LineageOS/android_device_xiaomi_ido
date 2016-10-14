@@ -148,7 +148,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # blockdev --getbsz /dev/block/mmcblk0p19
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
-BOARD_POWER_CUSTOM_BOARD_LIB := libpower_ido
 
 # Properties
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
