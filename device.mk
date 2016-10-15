@@ -113,6 +113,10 @@ PRODUCT_PACKAGES += \
     memtrack.msm8916 \
     liboverlay
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    XiaomiDoze
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprint.msm8916 \
