@@ -41,8 +41,8 @@ int fpc_auth_start(); //start auth
 uint32_t fpc_auth_step(); //step forward auth & process image (only available if capture image returns OK)
 int fpc_auth_end(); //end auth
 uint32_t fpc_get_user_db_length(); //get size of working db
-uint32_t fpc_load_user_db(char* path); //load user DB into TZ app from storage
-uint32_t fpc_store_user_db(uint32_t length, char* path); //store running TZ db
+uint64_t fpc_load_user_db(char* path); //load user DB into TZ app from storage
+uint32_t fpc_store_user_db(uint32_t length, char* path, uint64_t auth_id); //store running TZ db
 int fpc_close(); //close this implementation
 int fpc_init(); //init sensor
 void cancel_poll();

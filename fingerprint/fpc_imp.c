@@ -592,23 +592,30 @@ uint32_t fpc_get_user_db_length()
 }
 
 
-uint32_t fpc_load_user_db(char* path)
+uint64_t fpc_load_user_db(char* path)
 {
 
     set_bandwidth_fn(mHandle,true);
 
-    FILE *f = fopen(path, "r");
+    FILE *f = fopen(path, "rb");
 
     if (f == NULL) {
         ALOGE("Error opening file : %s", path);
-        return -1;
+        return 0;
     }
 
     fseek(f, 0, SEEK_END);
     long fsize = ftell(f);
     fseek(f, 0, SEEK_SET);
 
+    fsize = fsize - sizeof(uint64_t);
     ALOGI("Loading DB of size : %ld", fsize);
+
+    if(fsize < 100) {
+        ALOGE("File %s looks empty", path);
+        return 0;
+    }
+
 
     struct qcom_km_ion_info_t ihandle;
     struct QSEECom_ion_fd_info  ion_fd_info;
@@ -617,6 +624,9 @@ uint32_t fpc_load_user_db(char* path)
         ALOGE("ION allocation  failed");
         return -1;
     }
+
+    uint64_t auth_id;
+    fread(&auth_id, sizeof(uint64_t), 1, f);
 
     fread(ihandle.ion_sbuffer, fsize, 1, f);
 
@@ -639,23 +649,23 @@ uint32_t fpc_load_user_db(char* path)
     if(ret < 0) {
 	 ALOGE("Error sending FPC_SET_DB_DATA to tz\n");
         qcom_km_ion_dealloc(&ihandle);
-        return -1;
+        return 0;
     }
 
     if (send_cmd->v_addr != 0) {
         ALOGE("Error on TZ\n");
         qcom_km_ion_dealloc(&ihandle);
-        return -1;
+        return 0;
     }
 
     qcom_km_ion_dealloc(&ihandle);
     set_bandwidth_fn(mHandle,false);
 
-    return 0;
+    return auth_id;
 
 }
 
-uint32_t fpc_store_user_db(uint32_t length, char* path)
+uint32_t fpc_store_user_db(uint32_t length, char* path, uint64_t auth_id)
 {
 
     set_bandwidth_fn(mHandle,true);
@@ -701,13 +711,14 @@ uint32_t fpc_store_user_db(uint32_t length, char* path)
     }
 
 
-    FILE *f = fopen(path, "w");
+    FILE *f = fopen(path, "wb");
 
     if (f == NULL) {
         ALOGE("Error opening file : %s", path);
         return -1;
     }
 
+    fwrite(&auth_id, sizeof(uint64_t), 1, f);
     fwrite(ihandle.ion_sbuffer, length, 1, f);
 
     fclose(f);

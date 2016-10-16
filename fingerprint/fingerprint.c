@@ -24,10 +24,14 @@
 #include <hardware/fingerprint.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <endian.h>
+#include <inttypes.h>
 #include "fpc_imp.h"
 
 
 uint64_t challenge = 0;
+uint64_t auth_id=0;
+uint64_t operation=0;
 bool auth_thread_running = false;
 
 pthread_t thread;
@@ -35,6 +39,11 @@ pthread_mutex_t lock;
 
 fingerprint_notify_t callback;
 char db_path[255];
+
+static uint64_t get_64bit_rand() {
+    return (((uint64_t) rand()) << 32) | ((uint64_t) rand());
+}
+
 
 void *enroll_thread_loop()
 {
@@ -95,9 +104,11 @@ void *enroll_thread_loop()
                 ALOGI("%s : Got print id : %lu", __func__,(unsigned long) print_id);
                 
                 uint32_t db_length = fpc_get_user_db_length();
-                ALOGI("%s : User Database Length Is : %lu", __func__,(unsigned long) db_length);
+                auth_id = get_64bit_rand();
+                ALOGI("%s : User Database Length Is : %lu, new ath_id: %" PRId64 , __func__,(unsigned long) db_length, auth_id);
 
-                fpc_store_user_db(db_length, db_path);
+
+                fpc_store_user_db(db_length, db_path, auth_id);
 
                 fingerprint_msg_t msg;
                 msg.type = FINGERPRINT_TEMPLATE_ENROLLING;
@@ -161,11 +172,11 @@ void *auth_thread_loop()
 
                 hw_auth_token_t hat = {0};
                 //fpc_get_hw_auth_obj(&hat, sizeof(hw_auth_token_t));
-                hat.version = 0;
-                hat.challenge = challenge;
+                hat.version = HW_AUTH_TOKEN_VERSION;
+                hat.challenge = operation;
                 hat.user_id = 0;
-                hat.authenticator_id = 1;    // secure authenticator ID
-                hat.authenticator_type = 1;  // hw_authenticator_type_t, in network order
+                hat.authenticator_id = auth_id;    // secure authenticator ID
+                hat.authenticator_type = htobe32(HW_AUTH_FINGERPRINT);;  // hw_authenticator_type_t, in network order
                 hat.timestamp = time(NULL);           // in network order
                 hat.hmac[0] = 1;
                 //all this looks unsupported on redmi 3
@@ -218,15 +229,18 @@ static int fingerprint_close(hw_device_t *dev)
     }
 }
 
-static uint64_t get_64bit_rand() {
-    return (((uint64_t) rand()) << 32) | ((uint64_t) rand());
-}
 
 static uint64_t fingerprint_pre_enroll(struct fingerprint_device __unused *dev)
 {
     challenge = get_64bit_rand();
     ALOGI("%s : Challange is : %jd",__func__,challenge);
     return challenge;
+}
+
+static int fingerprint_post_enroll(struct fingerprint_device __unused *dev) {
+    ALOGV("fingerprint_post_enroll");
+    challenge = 0;
+    return 0;
 }
 
 static int fingerprint_enroll(struct fingerprint_device __unused *dev,
@@ -273,10 +287,8 @@ static int fingerprint_enroll(struct fingerprint_device __unused *dev,
 
 static uint64_t fingerprint_get_auth_id(struct fingerprint_device __unused *dev)
 {
-
-    uint64_t id = get_64bit_rand();
-    ALOGI("%s : ID : %jd",__func__,id );
-    return id;
+    ALOGI("%s : ID : %jd",__func__,auth_id );
+    return auth_id;
 
 }
 
@@ -341,7 +353,10 @@ static int fingerprint_remove(struct fingerprint_device __unused *dev,
 
                 uint32_t db_length = fpc_get_user_db_length();
                 ALOGD("%s : User Database Length Is : %lu", __func__,(unsigned long) db_length);
-                fpc_store_user_db(db_length, db_path);
+                if (db_length == 0)
+                    auth_id=0;
+
+                fpc_store_user_db(db_length, db_path, auth_id);
 
                 fingerprint_msg_t msg;
                 msg.type = FINGERPRINT_TEMPLATE_REMOVED;
@@ -368,10 +383,12 @@ static int fingerprint_set_active_group(struct fingerprint_device __unused *dev,
     sprintf(db_path,"%s/data_%d.db",store_path,gid);
     ALOGI("%s : storage path set to : %s",__func__, db_path);
 	
-    int ret = fpc_load_user_db(db_path);
-    if (!ret) {
+    auth_id = fpc_load_user_db(db_path);
+    if (auth_id == 0) {
     	ALOGE("Failed to load saved db from path: %s\n",db_path);
     }
+
+    ALOGI("%s: auth_id loaded from disk: %"PRId64 ,__func__, auth_id);
 
     return 0;
 
@@ -412,13 +429,15 @@ static int fingerprint_enumerate(struct fingerprint_device *dev,
 }
 
 static int fingerprint_authenticate(struct fingerprint_device __unused *dev,
-                                    uint64_t __unused operation_id, __unused uint32_t gid)
+                                    uint64_t operation_id, __unused uint32_t gid)
 {
 
     if (auth_thread_running) {
         ALOGE("%s : Error, thread already running\n", __func__);
         return -1;
     }
+
+    operation = operation_id;
 
     pthread_mutex_lock(&lock);
     auth_thread_running = true;
@@ -469,6 +488,7 @@ static int fingerprint_open(const hw_module_t* module, const char __unused *id,
 
     dev->pre_enroll = fingerprint_pre_enroll;
     dev->enroll = fingerprint_enroll;
+    dev->post_enroll = fingerprint_post_enroll;
     dev->get_authenticator_id = fingerprint_get_auth_id;
     dev->cancel = fingerprint_cancel;
     dev->remove = fingerprint_remove;
@@ -477,6 +497,9 @@ static int fingerprint_open(const hw_module_t* module, const char __unused *id,
     dev->authenticate = fingerprint_authenticate;
     dev->set_notify = set_notify_callback;
     dev->notify = NULL;
+
+    operation = 0;
+    challenge = get_64bit_rand();
 
     *device = (hw_device_t*) dev;
     return 0;
