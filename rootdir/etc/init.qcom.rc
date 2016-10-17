@@ -148,6 +148,12 @@ on boot
     chown system system /sys/class/leds/infrared/transmit
     chown system system /sys/class/leds/infrared/brightness
 
+    # VM BMS
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+
 on fs
     mount_all fstab.qcom
     mkdir /persist/data 0700 system system
@@ -467,11 +473,32 @@ service charger /charger
     group system graphics
     seclabel u:r:healthd:s0
 
+service vm_bms /system/bin/vm_bms
+    class main
+    user root
+    group root
+
 # Start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
+
+# Allow usb charging to be disabled peristently
+on property:persist.usb.chgdisabled=1
+    write /sys/class/power_supply/battery/charging_enabled 0
+
+on property:persist.usb.chgdisabled=0
+    write /sys/class/power_supply/battery/charging_enabled 1
+
+on charger
+    wait /dev/block/bootdevice/by-name/system
+    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+    start vm_bms
 
 service qseecomd /system/bin/qseecomd
    class core

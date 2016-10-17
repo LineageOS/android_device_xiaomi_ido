@@ -23,6 +23,9 @@ bluetooth.hfp.client=1
 # Camera
 persist.camera.cpp.duplication=false
 
+# Charger
+persist.sys.chgdisabled=0
+
 # Display
 debug.sf.hw=0
 debug.egl.hw=0
