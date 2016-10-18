@@ -187,14 +187,12 @@ on post-fs-data
 
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
-    chown system system /data/connectivity
+    mkdir /data/connectivity/nsrm 0771 system system
 
     # Create the directories used by DPM subsystem
     mkdir /data/dpm 0771 system system
-    chown system system /data/dpm
-
+    mkdir /data/dpm/fdMgr 0771 system system
     mkdir /data/dpm/nsrm 0771 system system
-    chown system system /data/dpm/nsrm
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
@@ -316,6 +314,14 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+
+service dpmd /system/bin/dpmd
+    class main
+    socket dpmd stream 660 root system
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -445,10 +451,6 @@ service dhcpcd_bnep3 /system/bin/dhcpcd -BKLG
 service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
-
-on property:crypto.driver.load=1
-    insmod /system/lib/modules/qce.ko
-    insmod /system/lib/modules/qcedev.ko
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start

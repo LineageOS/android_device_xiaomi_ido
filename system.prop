@@ -26,6 +26,9 @@ persist.camera.cpp.duplication=false
 # Charger
 persist.sys.chgdisabled=0
 
+# CNE
+persist.cne.feature=1
+
 # Display
 debug.sf.hw=0
 debug.egl.hw=0
