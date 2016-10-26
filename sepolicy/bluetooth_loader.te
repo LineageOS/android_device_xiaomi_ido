@@ -6,8 +6,10 @@ type bluetooth_loader_exec, exec_type, file_type;
 init_daemon_domain(bluetooth_loader)
 
 # Run init.qcom.bt.sh
-allow bluetooth_loader shell_exec:file { entrypoint read };
+allow bluetooth_loader shell_exec:file { entrypoint read getattr };
 allow bluetooth_loader bluetooth_loader_exec:file { getattr open execute_no_trans };
+allow bluetooth_loader toolbox_exec:file rx_file_perms;
+allow bluetooth_loader sysfs:file read;
 
 # init.qcom.bt.sh needs /system/bin/log access
 allow bluetooth_loader devpts:chr_file rw_file_perms;

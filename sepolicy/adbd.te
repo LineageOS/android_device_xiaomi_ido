@@ -1,0 +1,2 @@
+allow adbd proc:file read;
+allow adbd security_file:dir search;

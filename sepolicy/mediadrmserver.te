@@ -1,0 +1,1 @@
+allow mediadrmserver proc:file read;
