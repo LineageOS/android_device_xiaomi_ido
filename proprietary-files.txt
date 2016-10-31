@@ -434,7 +434,7 @@ vendor/lib/libvendorconn.so
 lib/hw/consumerir.msm8916.so
 lib64/hw/consumerir.msm8916.so
 
-# Fingerprint Firmware
+# Fingerprint Firmware (From Sony kitakami)
 vendor/firmware/tzfinger.b00
 vendor/firmware/tzfinger.b01
 vendor/firmware/tzfinger.b02

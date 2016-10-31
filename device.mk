@@ -210,8 +210,8 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 # Sensors
-PRODUCT_PACKAGES += \
-    calmodule.cfg
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/calmodule.cfg:system/vendor/etc/calmodule.cfg
 
 # Thermal Configuration
 PRODUCT_COPY_FILES += \
