@@ -412,11 +412,6 @@ vendor/lib64/libdrmtime.so
 vendor/lib64/libQSEEComAPI.so
 vendor/lib64/librpmb.so
 vendor/lib64/libssd.so
-vendor/lib/libwvdrm_L3.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS (From tomato)
 -lib64/libloc_api_v02.so
@@ -615,3 +610,9 @@ bin/time_daemon
 vendor/lib64/libTimeService.so
 vendor/lib/libTimeService.so
 
+# WideVine (From bullhead)
+vendor/lib/libwvdrm_L1.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
