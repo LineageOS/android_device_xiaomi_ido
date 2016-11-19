@@ -505,6 +505,11 @@ on property:init.svc.surfaceflinger=stopped
 on property:init.svc.surfaceflinger=running
     start ppd
 
+service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
+    class core
+    user root
+    group root
+
 service fingerprintd /system/bin/fingerprintd
     class late_start
     socket fpce stream 0666 system system
