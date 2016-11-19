@@ -312,7 +312,6 @@ on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
     start config_bluetooth
     start wcnss-service
-    start config_bt_addr
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
@@ -548,6 +547,7 @@ service adsprpcd /system/bin/adsprpcd
     class main
     user media
     group media
+    disabled
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
