@@ -3,3 +3,4 @@ allow init vfat:file { getattr open };
 allow init debugfs:file write;
 
 allow init fpc_socket:sock_file create_file_perms;
+allow init proc:lnk_file { setattr };
