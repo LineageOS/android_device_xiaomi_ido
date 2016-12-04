@@ -87,7 +87,9 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
+BOARD_HARDWARE_CLASS += \
+    hardware/cyanogen/cmhw \
+    $(LOCAL_PATH)/cmhw
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
