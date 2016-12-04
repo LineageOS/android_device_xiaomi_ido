@@ -4,3 +4,4 @@ allow qti_init_shell bluetooth_data_file:file { read open };
 allow qti_init_shell ctl_default_prop:property_service set;
 allow qti_init_shell persist_file:dir create;
 allow qti_init_shell qmuxd_socket:dir search;
+allow qti_init_shell proc_touchpanel:dir { rw_dir_perms setattr };
