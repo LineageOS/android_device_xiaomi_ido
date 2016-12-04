@@ -1,1 +1,3 @@
 allow system_server sensors_persist_file:dir search;
+allow system_server proc_touchpanel:dir search;
+allow system_server proc_touchpanel:file rw_file_perms;
