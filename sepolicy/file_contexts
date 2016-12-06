@@ -1,8 +1,3 @@
-/dev/smd3                                       u:object_r:hci_attach_dev:s0
-/persist/.bt_nv.bin                             u:object_r:bluetooth_data_file:s0
-
-/system/etc/init\.qcom\.bt\.sh                  u:object_r:bluetooth_loader_exec:s0
-
 # Fingerprint
 /dev/socket/fpce                                u:object_r:fpc_socket:s0
 /data/fpc(/.*)?                                 u:object_r:fpc_data_file:s0
