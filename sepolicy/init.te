@@ -1,4 +1,5 @@
 allow init vfat:file read;
 allow init vfat:file { getattr open };
+allow init logd:dir getattr;
 
 allow init fpc_socket:sock_file create_file_perms;
