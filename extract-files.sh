@@ -55,3 +55,6 @@ setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
 extract "$MY_DIR"/proprietary-files.txt "$SRC"
 
 "$MY_DIR"/setup-makefiles.sh
+
+# Extract common graphic libs
+"$CM_ROOT"/device/qcom/common/extractors/extract-files.sh "$SRC" msm8916-64 graphics
