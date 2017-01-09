@@ -399,39 +399,39 @@ lib/hw/consumerir.msm8916.so
 lib64/hw/consumerir.msm8916.so
 
 # Fingerprint Firmware (From Sony kitakami)
-vendor/firmware/tzfinger.b00
-vendor/firmware/tzfinger.b01
-vendor/firmware/tzfinger.b02
-vendor/firmware/tzfinger.b03
-vendor/firmware/tzfinger.mdt
+vendor/firmware/tzfinger.b00|00b388210f7633fc5cae9a705f553fec3b7d22a3
+vendor/firmware/tzfinger.b01|ffe4cd59c26f7a219b797923af295ea73c981dbd
+vendor/firmware/tzfinger.b02|27f63b9d54d162fac9d3e4b9f7fe73dfc521e8e3
+vendor/firmware/tzfinger.b03|d115d74e882b753bac9609511b3df2c86a3313ba
+vendor/firmware/tzfinger.mdt|043615769b3b83a642dfeac4315094b97fbce94a
 
 # DRM (From kipper)
-bin/qseecomd
-vendor/lib64/libdrmfs.so
-vendor/lib64/libdrmtime.so
-vendor/lib64/libQSEEComAPI.so
-vendor/lib64/librpmb.so
-vendor/lib64/libssd.so
+bin/qseecomd|74e6868aaf9c7bae0669eaf92ecbcb525aecb935
+vendor/lib64/libdrmfs.so|327ed1df2de3becb6518da16c8765c955c1a33bc
+vendor/lib64/libdrmtime.so|c022bb97f0f74cc98bd2fc26dc9b804e3e48e3ea
+vendor/lib64/libQSEEComAPI.so|b6c177649f7365376969d7aa9426fa97de5d7cfe
+vendor/lib64/librpmb.so|8d369f102b1dfed2f7794fdac4d51c54a6a7c99d
+vendor/lib64/libssd.so|1ef8d23376be307205e9d43c4e07f3c752abad63
 
 # GPS (From tomato)
--lib64/libloc_api_v02.so
--lib64/libloc_ds_api.so
--lib/libloc_api_v02.so
--lib/libloc_ds_api.so
-vendor/lib64/hw/flp.default.so
-vendor/lib64/libflp.so
-vendor/lib64/libgeofence.so
-vendor/lib64/libizat_core.so
-vendor/lib64/liblbs_core.so
-vendor/lib/hw/flp.default.so
-vendor/lib/libflp.so
-vendor/lib/libgeofence.so
-vendor/lib/libizat_core.so
-vendor/lib/liblbs_core.so
+-lib64/libloc_api_v02.so|7af8152d5bff8b00ff5069c6ffaec09b91b94e3a
+-lib64/libloc_ds_api.so|d3a71e23973c84d1b44902b75f28ac418d020c7f
+-lib/libloc_api_v02.so|a7eb9d116b8d39c6f89eceee056fc8086ee52819
+-lib/libloc_ds_api.so|a01009c5f656a702af91b4cc97be7008a2faca8e
+vendor/lib64/hw/flp.default.so|db26d74f2bf6077c8dc4624660b1fbe0979c0881
+vendor/lib64/libflp.so|3e1fda0104daa2e15b717a1925305e61098b16f6
+vendor/lib64/libgeofence.so|43f3296b671e25f9649f12f40af958e6a4c14196
+vendor/lib64/libizat_core.so|69d859d7a28c263c7179f906503dfb1e2f318344
+vendor/lib64/liblbs_core.so|2df050c2c77b919236ed223ecde8cbe960423611
+vendor/lib/hw/flp.default.so|6a07dcff6e50926a33b8cc08fc523f3153dd781c
+vendor/lib/libflp.so|efabad2ebb307d4ba6a9440b0632585b9b7c1155
+vendor/lib/libgeofence.so|f5f8ac69fcf78cbc2b7bee0713a85f0d017fd25b
+vendor/lib/libizat_core.so|794f662fe2643f6d2456b10f745b3fe0fa20a80b
+vendor/lib/liblbs_core.so|17bc1efe02a6357c608ef75f8d6e9aa11cf2c243
 
 # Graphics firmware (From kipper)
-etc/firmware/a420_pfp.fw
-etc/firmware/a420_pm4.fw
+etc/firmware/a420_pfp.fw|bb26ef752d31e4f5de3332e468ed7acabba69376
+etc/firmware/a420_pm4.fw|daf548088e1e3cef331e7ff6cfa906f4eb900c8b
 
 # Media
 vendor/lib/libDivxDrm.so
@@ -462,65 +462,65 @@ vendor/lib/libmm-disp-apis.so
 vendor/lib/libmm-qdcm.so
 
 # Qualcomm framework (From tomato)
-bin/irsc_util
-vendor/lib64/libdiag.so
-vendor/lib64/libdsi_netctrl.so
-vendor/lib64/libdsutils.so
-vendor/lib64/libidl.so
-vendor/lib64/libqcci_legacy.so
-vendor/lib64/libqdi.so
-vendor/lib64/libqdp.so
-vendor/lib64/libqmi_cci.so
-vendor/lib64/libqmi_client_helper.so
-vendor/lib64/libqmi_client_qmux.so
-vendor/lib64/libqmi_common_so.so
-vendor/lib64/libqmi_csi.so
-vendor/lib64/libqmi_encdec.so
-vendor/lib64/libqmiservices.so
-vendor/lib64/libqmi.so
-vendor/lib64/libsmemlog.so
-vendor/lib/libdiag.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_helper.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-vendor/lib/libqmi.so
-vendor/lib/libsmemlog.so
+bin/irsc_util|e0b931682e099450a8b550c0b8d3976442f9b305
+vendor/lib64/libdiag.so|9df86dc9413ade18c521baa32db3556823495fe3
+vendor/lib64/libdsi_netctrl.so|dbbaa01d300d1f6ba34952115dd9b9c274a21356
+vendor/lib64/libdsutils.so|c66a2ddab0fd744c1c8cfc34a3ef072d01154853
+vendor/lib64/libidl.so|83f8bdc69b923932eecf4879b0f8b860931abab8
+vendor/lib64/libqcci_legacy.so|f75c0e8501eaf0ba37bd0c0964072bb96373cdc3
+vendor/lib64/libqdi.so|7eac32c92a0dc03b4f7cd3e74f1d4859836e068b
+vendor/lib64/libqdp.so|c0ff72b2bd70182eec8f2be554eef22d4c66ebc2
+vendor/lib64/libqmi_cci.so|d3a7e8baec45b75fc6a11c7dcb45a0e74aded121
+vendor/lib64/libqmi_client_helper.so|5cf620a47068ee1386a14ab3a8d74da08a697d0b
+vendor/lib64/libqmi_client_qmux.so|6c0818940bb0f43cef91f329e22489d76e1cc1e5
+vendor/lib64/libqmi_common_so.so|20ae58cba7b6269348b96edabb014ab0c73e49d9
+vendor/lib64/libqmi_csi.so|ef439c59269fb2b223c0a980cae6503edbd13c35
+vendor/lib64/libqmi_encdec.so|26399acd45fb39f6dae1715443f079f074bfeb8c
+vendor/lib64/libqmiservices.so|7099eb8408d3caa6a0deab433792a013b9801c1e
+vendor/lib64/libqmi.so|f48f1280b6b86e546d15ea790cf791bc305f8876
+vendor/lib64/libsmemlog.so|e9729928572794faa7fe49857f05bbf451cc0a83
+vendor/lib/libdiag.so|ef463ec1c6b86c61b534b84e72f48d9cf4869624
+vendor/lib/libdsi_netctrl.so|4bfe4ef9a139ffe2fb60e98314cc68a7162ed7ef
+vendor/lib/libdsutils.so|ce0f0260671e4c463d88ea2db2fa131ac15d2e6d
+vendor/lib/libidl.so|4e5806ffbc0629ba2e37aa5b2b155fd07488f673
+vendor/lib/libqcci_legacy.so|5b859937c4f97553269844f2866872aa1e31d65e
+vendor/lib/libqdi.so|c20fa7fe33b5a90c365fdc2c412fb5a90609c3a0
+vendor/lib/libqdp.so|9ba2b82df643754404dfa04b9fd5af9db7e64d39
+vendor/lib/libqmi_cci.so|6469b8ea516f1ae07bd07d98d2d23894c7231a51
+vendor/lib/libqmi_client_helper.so|a2027f378cdd5fecd0807e6d48c95da6104e6afd
+vendor/lib/libqmi_client_qmux.so|d4f4e12a4d61f73ef119327be6014042c17e039c
+vendor/lib/libqmi_common_so.so|1090def8d727616e57c74cddd55b62ef521ded79
+vendor/lib/libqmi_csi.so|ed74128f2dc98e7a0d3de1933308dd6694449cdc
+vendor/lib/libqmi_encdec.so|727e5c03bfa67d63b4972d123ac08c54812afd29
+vendor/lib/libqmiservices.so|915a650d2afed605c55697a7004147cb00de8e50
+vendor/lib/libqmi.so|4ba69ff7ada5e8d38e81add90b0f01a6cb900305
+vendor/lib/libsmemlog.so|cfe3d0ac1c73bf589161aaeb3fab9d2106f89f20
 
 # Radio (From tomato)
--app/shutdownlistener/shutdownlistener.apk
-bin/netmgrd
-bin/qmuxd
-bin/radish
-bin/rfs_access
-bin/rmt_storage
-etc/permissions/qcnvitems.xml
-etc/permissions/qcrilhook.xml
--framework/qcnvitems.jar
--framework/qcrilhook.jar
--priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-vendor/lib64/libconfigdb.so
-vendor/lib64/libcneapiclient.so
-vendor/lib64/liblqe.so
-vendor/lib64/libmdmdetect.so
-vendor/lib64/libnetmgr.so
-vendor/lib64/libperipheral_client.so
-vendor/lib64/libril-qc-qmi-1.so
-vendor/lib64/libril-qc-radioconfig.so
-vendor/lib64/libril-qcril-hook-oem.so
-vendor/lib64/libsystem_health_mon.so
-vendor/lib64/libxml.so
-vendor/lib/libmdmdetect.so
-vendor/lib/libcneapiclient.so
+-app/shutdownlistener/shutdownlistener.apk|2a84fede48df78c6213ec0cd3f254991c04ea53f
+bin/netmgrd|bd2b9658154e8837dbcb2217aa8d7ef065355fb3
+bin/qmuxd|4a33ee7a0da42429f7f697cbb5c286d72ab07398
+bin/radish|c173451f919fe0c1349ae7ceeb4084fc5db84466
+bin/rfs_access|ccc97dcac6af7af0afab729256c39b240de6c1d8
+bin/rmt_storage|6242b1bbea360811589e5464edae6ad3f55432b8
+etc/permissions/qcnvitems.xml|8f3f97e4a23d0df3b572f2e5f9725492d889839d
+etc/permissions/qcrilhook.xml|70541ab4545fc5126634c3fa12b1bd498c572ccf
+-framework/qcnvitems.jar|c84bbb664eb17bbce372ca6651ae0a6e849faff5
+-framework/qcrilhook.jar|6f8f82a26f891271b6c1c19df7432a73b2dcbf2e
+-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|5dbf6a48a8700c08e6486dc33a1f9c9c9a1e0689
+vendor/lib64/libconfigdb.so|42e7d78788684c94630474c05ca06321b5d01e2c
+vendor/lib64/libcneapiclient.so|4dc84da5274b4aebbb516b6b08b6ffe27f450343
+vendor/lib64/liblqe.so|90c8edf002fb9b037f42aa527c3a9b8a1e77afcc
+vendor/lib64/libmdmdetect.so|43a21a85011fbd9b05800b6dd4f0bebc09ef8258
+vendor/lib64/libnetmgr.so|9c57fd86dcc89de8072b5dd3cedb92ddcf659421
+vendor/lib64/libperipheral_client.so|cb09ea1a5628fcb28f73684ac7df2a75364aa550
+vendor/lib64/libril-qc-qmi-1.so|1089925b985932f74d8b4c32f4e367171d2f0095
+vendor/lib64/libril-qc-radioconfig.so|a948f37c26499eae5c5cc66b0e5b792d5bc9f8dc
+vendor/lib64/libril-qcril-hook-oem.so|ea8240c903cc72eceb0d3e9a7e225b27ea2bd7f5
+vendor/lib64/libsystem_health_mon.so|1e42a34a36c9b46d6ab97b99eb5510035444450b
+vendor/lib64/libxml.so|7f8dd0568df5edef00ae36a895a493f72b6bc3ab
+vendor/lib/libmdmdetect.so|8748a5ebdcd5d2b55150e69e1f931b0c73e2eb7b
+vendor/lib/libcneapiclient.so|ccf52948787b6c91d6ae3ff248c9e0d55bd85a09
 
 # Sensors
 lib64/hw/sensors.msm8916.so
@@ -557,11 +557,11 @@ vendor/lib64/libTimeService.so
 vendor/lib/libTimeService.so
 
 # WideVine (From bullhead)
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L1.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/libwvdrm_L1.so|ba0a0affb7072161a7d213380d41c96d2c88c78f
+vendor/lib/libwvm.so|3cef6036357f669467be1e0d3da6e06afc3065a1
+vendor/lib/libWVStreamControlAPI_L1.so|806a9d418e7f5def5e6865d9c8adc41867c4d149
+vendor/lib/drm/libdrmwvmplugin.so|73db6ab28420bd8c859f17e86e43c0bca02e215c
+vendor/lib/mediadrm/libwvdrmengine.so|17ba1393a51c7519047952beeecc99a48e537648
 
 # WCNSS
 bin/wcnss_service
