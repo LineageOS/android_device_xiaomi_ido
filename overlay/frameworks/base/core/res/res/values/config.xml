@@ -388,4 +388,6 @@
     <integer name="config_screenBrightnessDoze">17</integer>
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
 
+    <!-- Disable button brightness settings -->
+    <integer name="config_buttonBrightnessSettingDefault">0</integer>
 </resources>
