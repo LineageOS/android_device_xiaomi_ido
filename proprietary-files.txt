@@ -398,13 +398,6 @@ etc/firmware/cpp_firmware_v1_4_0.fw
 lib/hw/consumerir.msm8916.so
 lib64/hw/consumerir.msm8916.so
 
-# Fingerprint Firmware (From Sony kitakami)
-vendor/firmware/tzfinger.b00|00b388210f7633fc5cae9a705f553fec3b7d22a3
-vendor/firmware/tzfinger.b01|ffe4cd59c26f7a219b797923af295ea73c981dbd
-vendor/firmware/tzfinger.b02|27f63b9d54d162fac9d3e4b9f7fe73dfc521e8e3
-vendor/firmware/tzfinger.b03|d115d74e882b753bac9609511b3df2c86a3313ba
-vendor/firmware/tzfinger.mdt|043615769b3b83a642dfeac4315094b97fbce94a
-
 # DRM (From kipper)
 bin/qseecomd|74e6868aaf9c7bae0669eaf92ecbcb525aecb935
 vendor/lib64/libdrmfs.so|327ed1df2de3becb6518da16c8765c955c1a33bc
