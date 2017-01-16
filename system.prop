@@ -102,6 +102,9 @@ persist.radio.apm_sim_not_pwdn=1
 persist.radio.multisim.config=dsds
 ro.telephony.default_network=9,9
 
+# SDcardFS
+ro.sys.sdcardfs=true
+
 # Time
 persist.timed.enable=true
 
