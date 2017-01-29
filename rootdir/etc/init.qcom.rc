@@ -59,7 +59,6 @@ on early-boot
     write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
-    write /sys/bus/msm_subsys/devices/subsys3/restart_level "related"
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
@@ -346,6 +345,11 @@ on property:bluetooth.hciattach=true
 
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
+
+service qcom-sh /system/bin/sh /init.qcom.sh
+    class late_start
+    user root
+    oneshot
 
 # FM
 on property:hw.fm.init=0

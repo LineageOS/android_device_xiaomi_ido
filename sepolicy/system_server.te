@@ -1,1 +1,2 @@
 allow system_server sensors_persist_file:dir search;
+allow system_server unlabeled:file unlink;
