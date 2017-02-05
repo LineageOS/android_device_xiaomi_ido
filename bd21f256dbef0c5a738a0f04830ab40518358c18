@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a288981_2873f7b2",
+        "filename": "overlay/vendor/cmsdk/cm/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7880
+      },
+      "writtenOn": "2017-02-05T07:30:01Z",
+      "side": 1,
+      "message": "You shouldn\u0027t have replaced the copyright. Instead, you should\u0027ve simply added the LineageOS copyright right under the CyanogenMod one.",
+      "revId": "bd21f256dbef0c5a738a0f04830ab40518358c18",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
