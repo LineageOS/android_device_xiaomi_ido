@@ -19,8 +19,6 @@ use.voice.path.for.pcm.voip=true
 
 # Bluetooth
 bluetooth.hfp.client=1
-
-# Bluetooth
 qcom.bluetooth.soc=smd
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
