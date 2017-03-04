@@ -434,7 +434,7 @@ service charger /charger
 service vm_bms /system/bin/vm_bms
     class main
     user root
-    group root
+    group root wakelock
 
 # Start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
