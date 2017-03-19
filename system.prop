@@ -3,19 +3,31 @@ dalvik.vm.dex2oat-flags=--no-watch-dog
 ro.sys.fw.dex2oat_thread_count=4
 
 # Audio
-ro.qc.sdk.audio.fluencetype=fluence
+af.fast_track_multiplier=1
+audio_hal.period_size=192
+audio.deep_buffer.media=true
+persist.audio.fluence.speaker=true
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
-persist.audio.fluence.speaker=true
-av.streaming.offload.enable=true
-audio.deep_buffer.media=true
+ro.config.vc_call_vol_steps=8
+ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.ssr=false
+tunnel.audio.encode=false
+use.voice.path.for.pcm.voip=true
+vidc.enc.narrow.searchrange=1
+voice.playback.conc.disabled=true
+voice.record.conc.disabled=true
+voice.voip.conc.disabled=true
+
+# Audio offload
 audio.offload.buffer.size.kb=64
 audio.offload.gapless.enabled=true
 audio.offload.min.duration.secs=30
-audio.offload.pcm.16bit.enable=false
+audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
 audio.offload.video=true
-use.voice.path.for.pcm.voip=true
+av.offload.enable=true
+av.streaming.offload.enable=false
 
 # Bluetooth
 bluetooth.hfp.client=1
