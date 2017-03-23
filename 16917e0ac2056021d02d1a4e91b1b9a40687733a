@@ -16,6 +16,24 @@
       "revId": "16917e0ac2056021d02d1a4e91b1b9a40687733a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba57610f_9509d12e",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-03-23T09:07:43Z",
+      "side": 1,
+      "message": "Remove newline",
+      "parentUuid": "ba57610f_d5ff4900",
+      "revId": "16917e0ac2056021d02d1a4e91b1b9a40687733a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
