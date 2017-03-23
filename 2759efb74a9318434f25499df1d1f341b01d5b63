@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba57610f_95dd5145",
+        "filename": "device.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-03-23T11:40:12Z",
+      "side": 1,
+      "message": "whitespace must die",
+      "revId": "2759efb74a9318434f25499df1d1f341b01d5b63",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
