@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba57610f_06b9392e",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-03-24T15:49:33Z",
+      "side": 0,
+      "message": "As we are building this lib from HAL shouldn\u0027t we add libqomx_core to device build target?",
+      "revId": "61893da26eed385ea48d84e8783a17105d8fcbef",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
