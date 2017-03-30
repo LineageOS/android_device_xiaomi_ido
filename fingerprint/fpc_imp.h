@@ -22,7 +22,6 @@
 #include "tz_api.h"
 
 struct QSEECom_handle * mHandle;
-struct QSEECom_handle * mHdl;
 
 uint64_t fpc_load_db_id(); //load db ID, used as authenticator ID in android
 //int fpc_verify_auth_challange(void* hat, uint32_t size); //verify auth challage before enroll (ensure its still valid)
