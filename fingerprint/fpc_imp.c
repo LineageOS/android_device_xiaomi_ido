@@ -44,7 +44,7 @@ static int qsee_load_trustlet(struct QSEECom_handle **clnt_handle,
     char* errstr;
 
     ALOGE("Starting app %s\n", fname);
-    ret = mStartApp(&mHandle, path, fname, 1024);
+    ret = mStartApp(clnt_handle, path, fname, sb_size);
     if (ret < 0) {
         errstr = qsee_error_strings(ret);
         ALOGE("Could not load app %s. Error: %s (%d)\n",
@@ -412,7 +412,7 @@ int fpc_enroll_step()
 
 int fpc_enroll_start()
 {
-    fpc_send_std_cmd_t* send_cmd = (fpc_send_enroll_start_cmd_t*) mHandle->ion_sbuffer;
+    fpc_send_std_cmd_t* send_cmd = (fpc_send_std_cmd_t*) mHandle->ion_sbuffer;
     fpc_send_std_cmd_t* rec_cmd = (fpc_send_std_cmd_t*) mHandle->ion_sbuffer + 64;
 
     send_cmd->cmd_id = FPC_ENROLL_START;
@@ -730,6 +730,8 @@ uint32_t fpc_store_user_db(uint32_t length, char* path, uint64_t auth_id)
 
 int fpc_close()
 {
+    mStopApp(&mHandle);
+    close_handle();
     if (device_disable() < 0) {
         ALOGE("Error stopping device\n");
         return -1;
@@ -742,11 +744,9 @@ int fpc_init()
     int ret = 0;
     control_pipe[0] = -1;
     control_pipe[1] = -1;
-    
+    mHandle = 0;
 
     ALOGE("INIT FPC TZ APP\n");
-
-    open_handle();
 
     if (open_handle() < 1) {
         ALOGE("Qseecom Lib Not Open !\n");
@@ -759,8 +759,10 @@ int fpc_init()
     }
 
     if (qsee_load_trustlet(&mHandle, FP_TZAPP_PATH,
-                             FP_TZAPP_NAME, 1024) < 0)
-        return -1;
+                             FP_TZAPP_NAME, 1024) < 0) {
+        ALOGE("Failed to load tzapp, or already loaded");
+	return -1;
+    }
 
     if (send_normal_command(FPC_INIT,0,mHandle) != 0) {
         ALOGE("Error sending FPC_INIT to tz\n");
@@ -783,7 +785,7 @@ int fpc_init()
         return -1;
     }
 
-   
+
     int fpc_info = send_normal_command(FPC_INIT_UNK_0,0,mHandle);
 
     ALOGI("Got device data : %d \n", fpc_info);
