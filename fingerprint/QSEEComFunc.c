@@ -140,6 +140,13 @@ int open_handle()
 }
 
 
+int close_handle()
+{
+    dlclose(mLibHandle);
+    mLibHandle = 0;
+    return 0;
+}
+
 int32_t qcom_km_ION_memalloc(struct qcom_km_ion_info_t *handle,
                              uint32_t size)
 {

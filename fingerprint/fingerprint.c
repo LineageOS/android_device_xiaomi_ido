@@ -82,8 +82,7 @@ void *enroll_thread_loop()
                     msg.data.enroll.samples_remaining = remaining_touches;
                     msg.data.enroll.msg = 0;
                     callback(&msg);
-        		    remaining_touches--;
-
+                    remaining_touches--;
                   } 
 
 
@@ -170,7 +169,7 @@ void *auth_thread_loop()
                 uint32_t print_id = verify_state+1;
                 ALOGI("%s : Got print id : %lu", __func__, (unsigned long) print_id);
 
-                hw_auth_token_t hat = {0};
+                hw_auth_token_t hat;
                 //fpc_get_hw_auth_obj(&hat, sizeof(hw_auth_token_t));
                 hat.version = HW_AUTH_TOKEN_VERSION;
                 hat.challenge = operation;
@@ -188,9 +187,8 @@ void *auth_thread_loop()
                 ALOGI("%s : hat->authenticator_type %d",__func__, hat.authenticator_type);
                 ALOGI("%s : hat->timestamp %lu",__func__,(unsigned long) hat.timestamp);
                 ALOGI("%s : hat size %lu",__func__,(unsigned long) sizeof(hw_auth_token_t));
-                
 
-                fingerprint_msg_t msg = {0};
+                fingerprint_msg_t msg;
                 msg.type = FINGERPRINT_AUTHENTICATED;
                 msg.data.authenticated.finger.gid = 0;
                 msg.data.authenticated.finger.fid = print_id;
@@ -210,7 +208,7 @@ void *auth_thread_loop()
     }
     fpc_auth_end();
     ALOGI("%s : finishing",__func__);
-    
+
     pthread_mutex_lock(&lock);
     auth_thread_running = false;
     pthread_mutex_unlock(&lock);
@@ -227,6 +225,7 @@ static int fingerprint_close(hw_device_t *dev)
     } else {
         return -1;
     }
+    ALOGI("finished %s",__func__);
 }
 
 
@@ -394,36 +393,11 @@ static int fingerprint_set_active_group(struct fingerprint_device __unused *dev,
 
 }
 
-static int fingerprint_enumerate(struct fingerprint_device *dev,
-                                 fingerprint_finger_id_t *results,
-                                 uint32_t *max_size)
+static int fingerprint_enumerate(struct fingerprint_device __unused *dev)
 {
-
     uint32_t print_count = fpc_get_print_count();
     ALOGD("%s : print count is : %u", __func__, print_count);
     fpc_get_pint_index_cmd_t print_indexs = fpc_get_print_index(print_count);
-    uint32_t prints[5];
-
-    //populate print array with index
-    prints[0] = print_indexs.p1;
-    prints[1] = print_indexs.p2;
-    prints[2] = print_indexs.p3;
-    prints[3] = print_indexs.p4;
-    prints[4] = print_indexs.p5;
-
-
-    if (*max_size == 0) {
-        *max_size = print_count;
-    } else {
-        for (size_t i = 0; i < *max_size && i < print_count; i++) {
-
-            uint32_t print_id = fpc_get_print_id(prints[i]);
-            ALOGD("%s : found print : %lu at index %d", __func__,(unsigned long) print_id, prints[i]);
-
-            results[i].fid = print_id;
-            results[i].gid = 0;
-        }
-    }
 
     return print_count;
 }
@@ -480,7 +454,6 @@ static int fingerprint_open(const hw_module_t* module, const char __unused *id,
 
     fingerprint_device_t *dev = malloc(sizeof(fingerprint_device_t));
     memset(dev, 0, sizeof(fingerprint_device_t));
-
     dev->common.tag = HARDWARE_DEVICE_TAG;
     dev->common.version = FINGERPRINT_MODULE_API_VERSION_2_0;
     dev->common.module = (struct hw_module_t*) module;
