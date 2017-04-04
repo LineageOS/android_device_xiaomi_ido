@@ -104,7 +104,7 @@ persist.data.qmi.adb_logmask=0
 
 # Radio
 DEVICE_PROVISIONED=1
-ril.libargs=-d /dev/smd0
+rild.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 ro.telephony.call_ring.multiple=false
 ril.subscription.types=NV,RUIM
