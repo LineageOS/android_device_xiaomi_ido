@@ -174,6 +174,9 @@ TARGET_RIL_VARIANT := caf
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
+# Seccomp
+BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
+
 # Video
 TARGET_HAVE_SIGNED_VENUS_FW := true
 
