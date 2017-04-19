@@ -26,53 +26,19 @@
 #
 
 on init
+    write /sys/class/android_usb/android0/f_rndis/manufacturer ${ro.product.manufacturer}
+    write /sys/class/android_usb/android0/f_rndis/vendorID 05C6
     write /sys/class/android_usb/android0/f_rndis/wceis 1
 
 on boot
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
     write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
-    write /sys/class/android_usb/android0/f_rndis/vendorID 05C6
-    write /sys/class/android_usb/android0/f_rndis/manufacturer ${ro.product.manufacturer}
     setprop persist.sys.usb.config.extra none
+    setprop sys.usb.rps_mask 0
 
 on charger
     setprop sys.usb.config mass_storage
-    write /sys/module/lpm_levels/enable_low_power/l2 4 	35
-    write /sys/module/lpm_levels/enable_low_power/l2 4	36
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1 	37
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1 	38
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled 1	39
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled 1	40
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled 1	41
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled 1	42
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled 1 	43
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled 1 	44
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/suspend_enabled 1	45
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/suspend_enabled 1	46
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/suspend_enabled 1	47
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/suspend_enabled 1	48
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/suspend_enabled 1	49
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/suspend_enabled 1 	50
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/suspend_enabled 1	51
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/suspend_enabled 1	52
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled 1	53
-    write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled 1 	54
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/idle_enabled 1	55
-    write /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/idle_enabled 1 	56
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/idle_enabled 1	57
-    write /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/idle_enabled 1	58
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/idle_enabled 1 	59
-    write /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/idle_enabled 1	60
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled 1 	61
-    write /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled 1	62
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/idle_enabled 1	63
-    write /sys/module/msm_pm/modes/cpu1/power_collapse/idle_enabled 1	64
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/idle_enabled 1	65
-    write /sys/module/msm_pm/modes/cpu2/power_collapse/idle_enabled 1	66
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/idle_enabled 1	67
-    write /sys/module/msm_pm/modes/cpu3/power_collapse/idle_enabled 1	68
-
 
 on fs
     mkdir /dev/usb-ffs 0770 shell shell
@@ -176,7 +142,6 @@ on property:sys.usb.config=diag,serial_smd,rmnet_bam,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9091
-    write /sys/class/android_usb/android0/iSerial "0123456789"
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/f_serial/transports smd
     write /sys/class/android_usb/android0/f_rmnet/transports smd,bam
@@ -222,7 +187,6 @@ on property:sys.usb.config=diag,serial_smd,rmnet_qti_bam
 
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
     stop adbd
-    stop mdbd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9025
@@ -724,11 +688,10 @@ on property:sys.usb.config=rndis
 
 on property:sys.usb.config=rndis,none
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff80
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct F00E
     write /sys/class/android_usb/android0/functions rndis
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     setprop sys.usb.state rndis
 
 on property:sys.usb.config=rndis,adb
@@ -737,11 +700,10 @@ on property:sys.usb.config=rndis,adb
 on property:sys.usb.config=rndis,none,adb
     stop adbd
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff88
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 9024
     write /sys/class/android_usb/android0/functions rndis,adb
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     start adbd
     setprop sys.usb.state rndis,adb
 
@@ -847,54 +809,39 @@ on property:sys.usb.config=rndis,diag,diag_mdm,diag_qsc,adb
     start adbd
     setprop sys.usb.state rndis,adb
 
-on property:sys.usb.config=adb
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff08
-    write /sys/class/android_usb/android0/functions adb
-    write /sys/class/android_usb/android0/enable 1
-    setprop sys.usb.state adb
-    start adbd
-    start mdbd
-
 on property:sys.usb.config=ptp
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff10
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 904D
     write /sys/class/android_usb/android0/functions ptp
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
-    start mdbd
 
 on property:sys.usb.config=ptp,adb
     stop adbd
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff18
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 904E
     write /sys/class/android_usb/android0/functions ptp,adb
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mtp
-    stop adbd
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff40
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct F003
     write /sys/class/android_usb/android0/functions mtp
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mtp,adb
     stop adbd
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff48
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 9039
     write /sys/class/android_usb/android0/functions mtp,adb
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
@@ -981,22 +928,20 @@ on property:sys.usb.config=diag,diag_mdm,ccid,adb
 on property:sys.usb.config=mass_storage,adb
     stop adbd
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff28
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 9015
     write /sys/class/android_usb/android0/functions adb,mass_storage
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
 #Mass-storage only composition
 on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 2717
-    write /sys/class/android_usb/android0/idProduct ff20
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct F000
     write /sys/class/android_usb/android0/functions mass_storage
     write /sys/class/android_usb/android0/enable 1
-    start mdbd
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=diag,qdss
@@ -1274,3 +1219,21 @@ on property:sys.usb.config=diag,serial_smd,rmnet_qti_bam,dpl_qti_bam_dmux,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=midi
+     write /sys/class/android_usb/android0/enable 0
+     write /sys/class/android_usb/android0/idVendor 05C6
+     write /sys/class/android_usb/android0/idProduct 90BA
+     write /sys/class/android_usb/android0/functions midi
+     write /sys/class/android_usb/android0/enable 1
+     setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=midi,adb
+     stop adbd
+     write /sys/class/android_usb/android0/enable 0
+     write /sys/class/android_usb/android0/idVendor 05C6
+     write /sys/class/android_usb/android0/idProduct 90BB
+     write /sys/class/android_usb/android0/functions midi,adb
+     write /sys/class/android_usb/android0/enable 1
+     start adbd
+     setprop sys.usb.state ${sys.usb.config}
