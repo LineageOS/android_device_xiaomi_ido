@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_fbab6ad4",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 16784
+      },
+      "writtenOn": "2017-04-29T17:01:43Z",
+      "side": 0,
+      "message": "I want to build a kernel with Monitor mode enabled, How should I do?(I\u0027d like to port Nethunter,Some help are needed,haha.)",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 45
+      },
+      "revId": "c38012e3a1a7b0c44f63ec20b867ad1e77645f83",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
