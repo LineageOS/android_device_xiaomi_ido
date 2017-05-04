@@ -53,8 +53,15 @@ public:
                                    unsigned long capabilities) const {}
     inline virtual bool hasAgpsExtendedCapabilities() const { return false; }
     inline virtual bool hasCPIExtendedCapabilities() const { return false; }
-    inline virtual void modemPowerVote(bool power) const {}
-    virtual void injectFeatureConfig(ContextBase* context) const {}
+    inline virtual void modemPowerVote(bool power) const {
+
+        (void)power;
+    }
+    virtual void injectFeatureConfig(ContextBase* context) const {
+
+        (void)context;
+    }
+    inline virtual bool hasNativeXtraClient() const { return false; }
     inline virtual IzatDevId_t getIzatDevId() const { return 0; }
 };
 
