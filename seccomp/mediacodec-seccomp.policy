@@ -1,3 +1,0 @@
-# device specific syscalls
-# extension of services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy
-getdents64: 1
