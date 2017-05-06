@@ -243,21 +243,21 @@ vendor/lib64/libQSEEComAPI.so|b6c177649f7365376969d7aa9426fa97de5d7cfe
 vendor/lib64/librpmb.so|8d369f102b1dfed2f7794fdac4d51c54a6a7c99d
 vendor/lib64/libssd.so|1ef8d23376be307205e9d43c4e07f3c752abad63
 
-# GPS (From tomato)
--lib64/libloc_api_v02.so|7af8152d5bff8b00ff5069c6ffaec09b91b94e3a
--lib64/libloc_ds_api.so|d3a71e23973c84d1b44902b75f28ac418d020c7f
--lib/libloc_api_v02.so|a7eb9d116b8d39c6f89eceee056fc8086ee52819
--lib/libloc_ds_api.so|a01009c5f656a702af91b4cc97be7008a2faca8e
-vendor/lib64/hw/flp.default.so|db26d74f2bf6077c8dc4624660b1fbe0979c0881
-vendor/lib64/libflp.so|3e1fda0104daa2e15b717a1925305e61098b16f6
-vendor/lib64/libgeofence.so|43f3296b671e25f9649f12f40af958e6a4c14196
-vendor/lib64/libizat_core.so|69d859d7a28c263c7179f906503dfb1e2f318344
-vendor/lib64/liblbs_core.so|2df050c2c77b919236ed223ecde8cbe960423611
-vendor/lib/hw/flp.default.so|6a07dcff6e50926a33b8cc08fc523f3153dd781c
-vendor/lib/libflp.so|efabad2ebb307d4ba6a9440b0632585b9b7c1155
-vendor/lib/libgeofence.so|f5f8ac69fcf78cbc2b7bee0713a85f0d017fd25b
-vendor/lib/libizat_core.so|794f662fe2643f6d2456b10f745b3fe0fa20a80b
-vendor/lib/liblbs_core.so|17bc1efe02a6357c608ef75f8d6e9aa11cf2c243
+# GPS (From crackling)
+-lib64/libloc_api_v02.so|ca97a81ea91ca5c7d8dd8c9a9054121ce1446b8a
+-lib64/libloc_ds_api.so|c2ed259789fe01aeced4e06ad1693036852daf7c
+-lib/libloc_api_v02.so|74df1667c42701ef550ba73db6c5ae63542913ac
+-lib/libloc_ds_api.so|2124d2df231d1e3ccb7f22c6227f6112f4013485
+vendor/lib64/hw/flp.default.so|03784211a3d7c144c0bc6f86b50d1cc5eb97f8c5
+vendor/lib64/libflp.so|33793c405cf39858854c8023dec4b4e0d9d79ff0
+vendor/lib64/libgeofence.so|23cb999eb444971170ff60873392706cf003ed23
+vendor/lib64/libizat_core.so|8d911c3ebf57e5179a3e37b610c055787d8d90bd
+vendor/lib64/liblbs_core.so|07a6b4bb7ae17e2bc26376a9b6eeb70126a50b0d
+vendor/lib/hw/flp.default.so|c281157957565dc35f7e1731b2c71a71a532a821
+vendor/lib/libflp.so|776aae670ffc63b1fbe27420729ee7bd9a6fbb0e
+vendor/lib/libgeofence.so|bd34516de3c933d81267822716235c358ab6695d
+vendor/lib/libizat_core.so|8a948e4f2aa38463050c6399f04ecb38564689d6
+vendor/lib/liblbs_core.so|10caf0d54768114cd471c33a1e2dc6385d3c7707
 
 # Graphics (From crackling)
 vendor/lib64/egl/eglsubAndroid.so|1043fd1935186ef1d54328e17bbbce810ba8e8fa
