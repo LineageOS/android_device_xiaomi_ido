@@ -95,6 +95,9 @@ BOARD_HARDWARE_CLASS += \
     hardware/cyanogen/cmhw \
     device/xiaomi/ido/cmhw
 
+# CNE
+BOARD_USES_QCNE := true
+
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
