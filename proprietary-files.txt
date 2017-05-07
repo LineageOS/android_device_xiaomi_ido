@@ -231,6 +231,44 @@ vendor/lib/libmmcamera_ov5670_a11.so
 vendor/lib/libmmcamera_ov5670_q5v41b.so
 vendor/lib/libmmcamera_ov13853_q13853a.so
 
+# CNE/DPM (From crackling)
+bin/cnd|fc5c0c1ffaad8959951caa7002e8452247997969
+bin/dpmd|3c15bd85b9d7a4de87ad5734e29cb62b59f4a561
+etc/cne/andsfCne.xml|f81a69eac5dd16bbb195a0fcf1211a51cc014553
+etc/cne/SwimConfig.xml|68dedcca1c2ac18cf81fdee1854de16a3a60dd02
+etc/dpm/dpm.conf|b686d2bc02e89db5b11b6bd85532b9d9314d643c
+etc/dpm/nsrm/NsrmConfiguration.xml|c406e5aaaa4ab278a7f7b62405ad5d91c8084835
+etc/permissions/cneapiclient.xml|15831adf0e80243042b90c734eea0a68eb8ae9c9
+etc/permissions/com.qti.dpmframework.xml|36b94c9338069e434b83359a92cdc7ff62b822df
+etc/permissions/com.quicinc.cne.xml|e99e631d8b06ba4680529e9e4004d8d05baf6904
+etc/permissions/ConnectivityExt.xml|da7fd0d0da06933b19b657addd14e6858b73e13c
+etc/permissions/dpmapi.xml|ded29f9befaef20a7ccee0c75427fda1d1d04890
+framework/cneapiclient.jar|3cb56a579341acfb16d2be2e41bac2c7b6ac34b4
+framework/com.qti.dpmframework.jar|7d855e9cf5d10cd88cdcd9c9bd16120afcaa7e72
+framework/com.quicinc.cne.jar|2f3384f53dc7ae8290a04b75f729a58c0e47fd3f
+framework/ConnectivityExt.jar|67025d09bbc7bb87bca1d15ab9c133eeb1ef2b9d
+framework/dpm.jar|7d8fbc44891bc77d106f732f183c4cac2ff8fbdf
+framework/dpmapi.jar|0015235ff71d52d1b340b10ce4fa737fa26975ef
+-priv-app/CNEService/CNEService.apk|300706e55b5fcad4cb60df8e314e3b54de14f3c6
+vendor/lib64/libcne.so|8f9018119c73d400dfe0d5433424ec521eb53501
+vendor/lib64/libcneapiclient.so|042ad03479f951ff8246db48eaa7fa156bada4e8
+vendor/lib64/libcneqmiutils.so|ac902c512d3ec966336cadf95c6dd41c6105db02
+vendor/lib64/libdpmctmgr.so|391e86501fe10f6a88c50320636694e5fdcd9902
+vendor/lib64/libdpmframework.so|52c53ba6447ab9545e529709cb89564ca4931850
+vendor/lib64/libdpmnsrm.so|e38479e16fe4f19c3261c89debe1eec3fb8f4ea3
+vendor/lib64/libdpmfdmgr.so|dca17d0ba31bb87a7bdd74cd247442638c8164c9
+vendor/lib64/libdpmtcm.so|8a29aa0e3ca1fd93cfdaa503ad3320115db88c83
+vendor/lib64/libvendorconn.so|5f8709f043da3d07cee0615241ac406b37feb9ba
+vendor/lib/libcne.so|6d56b74926599349c43492086e9bccdcd752509f
+vendor/lib/libcneapiclient.so|107b1aa96f12ef6a7e081a15b260273498da4038
+vendor/lib/libcneqmiutils.so|df7703daf0e8dec5dbfe0b682f9722229df0a9de
+vendor/lib/libdpmctmgr.so|a8c63600e63e6554278712a013410e929e33289f
+vendor/lib/libdpmframework.so|fa2be6c877f0ce25bfe196d53793031f8476ac37
+vendor/lib/libdpmnsrm.so|09e32e8baaf80788e21d0402fade28e5f747dc40
+vendor/lib/libdpmfdmgr.so|214259940419b71970da88bf6c5f56ddb859d3ad
+vendor/lib/libdpmtcm.so|76a8e2ef58be9df411643d686cf2bd7216b629e1
+vendor/lib/libvendorconn.so|6c8876c514d0aef4ae1b4a1d7cb03d431c2c462c
+
 # ConsumerIR
 lib/hw/consumerir.msm8916.so
 lib64/hw/consumerir.msm8916.so
@@ -392,7 +430,6 @@ etc/permissions/qcrilhook.xml|70541ab4545fc5126634c3fa12b1bd498c572ccf
 -framework/qcrilhook.jar|6f8f82a26f891271b6c1c19df7432a73b2dcbf2e
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|5dbf6a48a8700c08e6486dc33a1f9c9c9a1e0689
 vendor/lib64/libconfigdb.so|42e7d78788684c94630474c05ca06321b5d01e2c
-vendor/lib64/libcneapiclient.so|4dc84da5274b4aebbb516b6b08b6ffe27f450343
 vendor/lib64/liblqe.so|90c8edf002fb9b037f42aa527c3a9b8a1e77afcc
 vendor/lib64/libmdmdetect.so|43a21a85011fbd9b05800b6dd4f0bebc09ef8258
 vendor/lib64/libnetmgr.so|9c57fd86dcc89de8072b5dd3cedb92ddcf659421
@@ -403,7 +440,6 @@ vendor/lib64/libril-qcril-hook-oem.so|ea8240c903cc72eceb0d3e9a7e225b27ea2bd7f5
 vendor/lib64/libsystem_health_mon.so|1e42a34a36c9b46d6ab97b99eb5510035444450b
 vendor/lib64/libxml.so|7f8dd0568df5edef00ae36a895a493f72b6bc3ab
 vendor/lib/libmdmdetect.so|8748a5ebdcd5d2b55150e69e1f931b0c73e2eb7b
-vendor/lib/libcneapiclient.so|ccf52948787b6c91d6ae3ff248c9e0d55bd85a09
 
 # Sensors
 lib64/hw/sensors.msm8916.so

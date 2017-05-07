@@ -327,6 +327,15 @@ service rmt_storage /system/bin/rmt_storage
     group wakelock
     writepid /dev/cpuset/system-background/tasks
 
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+
+service dpmd /system/bin/dpmd
+    class late_start
+    socket dpmd stream 660 root system
+    group system readproc
+
 service config_bt_addr /system/bin/btnvtool -O
     class core
     user bluetooth
