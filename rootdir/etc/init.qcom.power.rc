@@ -4,10 +4,6 @@ on enable-low-power
     # RPS mask
     write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 10
 
-    # Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
-
     # HMP scheduler load tracking settings
     write /proc/sys/kernel/sched_window_stats_policy 3
     write /proc/sys/kernel/sched_ravg_hist_size 3
@@ -109,13 +105,6 @@ on enable-low-power
 
     # Enable dynamic clock gating
     write /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating 1
-
-    # Per-process reclaim
-    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
-    write /sys/module/process_reclaim/parameters/pressure_min 10
-    write /sys/module/process_reclaim/parameters/per_swap_size 1024
-    write /sys/module/process_reclaim/parameters/pressure_max 70
-    write /sys/module/process_reclaim/parameters/swap_opt_eff 30
 
     rm /data/system/perfd/default_values
     start perfd
