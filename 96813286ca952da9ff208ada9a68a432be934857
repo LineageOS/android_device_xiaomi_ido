@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_ff79f6fc",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-05-10T16:24:50Z",
+      "side": 1,
+      "message": "Don\u0027t remove existing copyright\n\nWe use The LineageOS Project",
+      "revId": "96813286ca952da9ff208ada9a68a432be934857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_bf837ecb",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-05-10T16:24:50Z",
+      "side": 1,
+      "message": "From where you got these values?",
+      "revId": "96813286ca952da9ff208ada9a68a432be934857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_7f6d0632",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-05-10T16:24:50Z",
+      "side": 1,
+      "message": "again",
+      "revId": "96813286ca952da9ff208ada9a68a432be934857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_5f6a4a1b",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-05-10T16:24:50Z",
+      "side": 1,
+      "message": "You should set this to somewhat between 5/7",
+      "revId": "96813286ca952da9ff208ada9a68a432be934857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_3f778e04",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-05-10T16:24:50Z",
+      "side": 1,
+      "message": "Currently screen dim is fine",
+      "revId": "96813286ca952da9ff208ada9a68a432be934857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_1f74d2fb",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 13825
+      },
+      "writtenOn": "2017-05-10T16:24:50Z",
+      "side": 1,
+      "message": "We aren\u0027t miui",
+      "revId": "96813286ca952da9ff208ada9a68a432be934857",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
