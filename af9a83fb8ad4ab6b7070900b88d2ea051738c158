@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_d5e29bd4",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 17000
+      },
+      "writtenOn": "2017-05-11T13:52:19Z",
+      "side": 0,
+      "message": "Not sure why are you still removing CM copyright...",
+      "revId": "af9a83fb8ad4ab6b7070900b88d2ea051738c158",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
