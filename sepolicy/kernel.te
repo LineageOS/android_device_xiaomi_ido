@@ -1,8 +1,13 @@
 allow kernel vfat:file { getattr open };
+allow kernel audioserver:process setsched;
+allow kernel dataservice_app:process setsched;
+allow kernel drmserver:process setsched;
+allow kernel mediadrmserver:process setsched;
+allow kernel mediaextractor:process setsched;
+allow kernel mediaserver:process setsched;
 allow kernel platform_app:process setsched;
 allow kernel priv_app:process setsched;
-allow kernel mediaserver:process setsched;
-allow kernel system_app:process setsched;
 allow kernel radio:process setsched;
+allow kernel system_app:process setsched;
 allow kernel system_server:process setsched;
 allow kernel zygote:process setsched;
