@@ -326,7 +326,7 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
-    group wakelock
+    group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
 service cnd /system/bin/cnd
