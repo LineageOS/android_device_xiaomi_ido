@@ -3,5 +3,5 @@ allow qti_init_shell hci_attach_dev:chr_file { read write open ioctl };
 allow qti_init_shell bluetooth_data_file:file { read open };
 allow qti_init_shell ctl_default_prop:property_service set;
 allow qti_init_shell persist_file:dir create;
-allow qti_init_shell qmuxd_socket:dir search;
+allow qti_init_shell qmuxd_socket:dir { search write };
 allow qti_init_shell proc_touchpanel:dir { rw_dir_perms setattr };
