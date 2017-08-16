@@ -39,9 +39,6 @@ ro.qualcomm.bt.hci_transport=smd
 # Camera
 persist.camera.cpp.duplication=false
 
-# Charger
-persist.sys.chgdisabled=0
-
 # CNE
 persist.cne.feature=1
 
