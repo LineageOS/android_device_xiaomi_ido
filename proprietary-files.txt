@@ -484,6 +484,3 @@ vendor/lib/libwvm.so|3cef6036357f669467be1e0d3da6e06afc3065a1
 vendor/lib/libWVStreamControlAPI_L1.so|806a9d418e7f5def5e6865d9c8adc41867c4d149
 vendor/lib/drm/libdrmwvmplugin.so|73db6ab28420bd8c859f17e86e43c0bca02e215c
 vendor/lib/mediadrm/libwvdrmengine.so|17ba1393a51c7519047952beeecc99a48e537648
-
-# WCNSS
-bin/wcnss_service
