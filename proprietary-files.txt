@@ -356,14 +356,10 @@ etc/firmware/a420_pfp.fw|ceb61d9f1385b3f2956d72f33e0bd43cb12f72f0
 etc/firmware/a420_pm4.fw|96addc1f5cb6dd3a57fc40ef0a6ba8721d5b601f
 
 # Media
-vendor/lib/libDivxDrm.so
-vendor/lib/libI420colorconvert.so
-vendor/lib/libmmosal.so
-vendor/lib/libmm-color-convertor.so
+lib/libOmxVdecHevc.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libSHIMDivxDrm.so
 
 # Perf
 vendor/bin/perfd
