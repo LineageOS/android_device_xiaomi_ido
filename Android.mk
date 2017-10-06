@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2016 The CyanogenMod Project
+#               2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,6 +22,18 @@ ifneq ($(filter ido,$(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
+
+CARD_IMAGES := \
+    cardapp.b00 cardapp.b01 cardapp.b02 cardapp.b03 cardapp.mdt
+
+CARD_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(CARD_IMAGES)))
+$(CARD_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "CARDAPP firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(CARD_SYMLINKS)
 
 CMN_IMAGES := \
     cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.mdt
@@ -70,10 +83,22 @@ $(MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(MBA_SYMLINKS)
 
+MLI_IMAGES := \
+    mlipay.b00 mlipay.b01 mlipay.b02 mlipay.b03 mlipay.mdt
+
+MLI_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MLI_IMAGES)))
+$(MLI_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "MLI firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(MLI_SYMLINKS)
+
 MODEM_IMAGES := \
     modem.b00 modem.b01 modem.b02 modem.b03 modem.b04 modem.b05 \
     modem.b06 modem.b08 modem.b09 modem.b12 modem.b13 modem.b14 \
-    modem.b17 modem.b18 modem.b15 modem.b16 modem.b21 modem.b22 \
+    modem.b15 modem.b16 modem.b17 modem.b18 modem.b21 modem.b22 \
     modem.b23 modem.b25 modem.b26 modem.mdt modem_pr
 
 MODEM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MODEM_IMAGES)))
@@ -96,6 +121,30 @@ $(PLAYREADY_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(PLAYREADY_SYMLINKS)
+
+SEC_IMAGES := \
+    secauth.b00 secauth.b01 secauth.b02 secauth.b03 secauth.mdt
+
+SEC_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(SEC_IMAGES)))
+$(SEC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "SecAuth firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(SEC_SYMLINKS)
+
+TZ_IMAGES := \
+    tzfinger.b00 tzfinger.b01 tzfinger.b02 tzfinger.b03 ptzfinger.mdt
+
+TZ_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(TZ_IMAGES)))
+$(TZ_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Tzfinger firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(TZ_SYMLINKS)
 
 WCNSS_IMAGES := \
     wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 wcnss.b06 \
