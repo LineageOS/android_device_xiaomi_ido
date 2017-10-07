@@ -247,7 +247,6 @@ framework/cneapiclient.jar|3cb56a579341acfb16d2be2e41bac2c7b6ac34b4
 framework/com.qti.dpmframework.jar|7d855e9cf5d10cd88cdcd9c9bd16120afcaa7e72
 framework/com.quicinc.cne.jar|2f3384f53dc7ae8290a04b75f729a58c0e47fd3f
 framework/ConnectivityExt.jar|67025d09bbc7bb87bca1d15ab9c133eeb1ef2b9d
-framework/dpm.jar|7d8fbc44891bc77d106f732f183c4cac2ff8fbdf
 framework/dpmapi.jar|0015235ff71d52d1b340b10ce4fa737fa26975ef
 -priv-app/CNEService/CNEService.apk|300706e55b5fcad4cb60df8e314e3b54de14f3c6
 vendor/lib64/libcne.so|8f9018119c73d400dfe0d5433424ec521eb53501
