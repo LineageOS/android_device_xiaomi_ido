@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49551f1c_9a9e39e8",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-10-09T13:17:14Z",
+      "side": 1,
+      "message": "These 2 can be also removed",
+      "range": {
+        "startLine": 360,
+        "startChar": 0,
+        "endLine": 361,
+        "endChar": 35
+      },
+      "revId": "f277a4f3a27b4104ea5a2a44008cbeda2c168e62",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
